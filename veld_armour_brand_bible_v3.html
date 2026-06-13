@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veld Armour — Brand Bible 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#c8a84b;--gold-light:#e2c97e;--gold-dim:#8a6e28;--black:#0a0a0a;--white:#f5f2ed;--grey:#5c5c5c;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#f0ede6;color:var(--black);font-family:'Barlow',sans-serif;font-size:14px;line-height:1.7;}
+.page{max-width:960px;margin:0 auto;background:#fff;}
+
+/* COVER */
+.cover{background:var(--black);min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 40px;position:relative;}
+.cover-shield{margin-bottom:32px;}
+.cover-logo{font-family:'Bebas Neue',sans-serif;font-size:96px;color:var(--gold);letter-spacing:0.08em;line-height:0.9;}
+.cover-div{display:flex;align-items:center;gap:16px;margin:24px auto;width:320px;}
+.cover-line{flex:1;height:1px;background:#c8a84b44;}
+.cover-d{width:10px;height:10px;background:var(--gold);transform:rotate(45deg);}
+.cover-tag{font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:0.5em;color:var(--gold);text-transform:uppercase;}
+.cover-sub{font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:0.3em;color:#444;text-transform:uppercase;margin-top:12px;}
+.cover-meta{position:absolute;bottom:40px;left:0;right:0;text-align:center;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.4em;color:#333;text-transform:uppercase;}
+
+/* SECTIONS */
+.section{padding:60px 56px;border-bottom:1px solid #eee;}
+.section:last-child{border-bottom:none;}
+.sec-num{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.5em;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--black);letter-spacing:0.06em;line-height:1;margin-bottom:8px;}
+.sec-div{display:flex;align-items:center;gap:10px;margin:16px 0 32px;}
+.sec-line{flex:1;height:1px;background:#eee;}
+.sec-diamond{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);}
+p{color:#555;line-height:1.8;margin-bottom:16px;}
+strong{color:var(--black);}
+
+/* COLOUR PALETTE */
+.colours{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;}
+.swatch-block{border-radius:4px;overflow:hidden;border:0.5px solid #ddd;}
+.swatch-color{height:80px;}
+.swatch-info{padding:12px;background:#fff;}
+.swatch-name{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.1em;color:var(--black);}
+.swatch-hex{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.2em;color:#888;margin-top:2px;}
+.swatch-cmyk{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:0.15em;color:#aaa;}
+
+/* TYPOGRAPHY */
+.font-demo{margin-bottom:2rem;padding:1.5rem;background:#f8f7f4;border-left:3px solid var(--gold);border-radius:0 4px 4px 0;}
+.font-sample{margin-bottom:4px;}
+.font-meta{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.3em;color:#888;text-transform:uppercase;}
+
+/* LOGO */
+.logo-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.logo-box{padding:2rem;border:0.5px solid #eee;border-radius:4px;display:flex;flex-direction:column;align-items:center;gap:1rem;}
+.logo-box.dark{background:var(--black);}
+.logo-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.3em;color:#888;text-transform:uppercase;}
+.logo-box.dark .logo-label{color:#444;}
+
+/* PRODUCT TABLE */
+.prod-table{width:100%;border-collapse:collapse;margin-bottom:1rem;}
+.prod-table th{background:var(--black);color:var(--gold);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;padding:10px 14px;text-align:left;}
+.prod-table td{padding:10px 14px;border-bottom:0.5px solid #f0f0f0;font-size:13px;color:#555;}
+.prod-table tr:hover td{background:#f8f7f4;}
+.prod-table .make{font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--black);letter-spacing:0.06em;}
+.prod-table .price{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--gold);letter-spacing:0.05em;}
+.prod-table .tick{color:var(--gold);}
+.prod-table .cross{color:#ddd;}
+
+/* PRICING CARDS */
+.price-cards{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;}
+.price-card{background:var(--black);border-radius:4px;padding:2rem;text-align:center;}
+.price-card-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.4em;color:#c8a84b88;text-transform:uppercase;margin-bottom:8px;}
+.price-card-price{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--gold);letter-spacing:0.04em;line-height:1;}
+.price-card-sub{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.3em;color:#444;text-transform:uppercase;margin-top:6px;}
+.price-card-dep{font-size:11px;color:#555;margin-top:12px;}
+
+/* VOICE */
+.voice-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.voice-card{padding:1.5rem;border:0.5px solid #eee;border-radius:4px;}
+.voice-card.do{border-left:3px solid var(--gold);}
+.voice-card.dont{border-left:3px solid #cc3333;}
+.voice-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.1em;margin-bottom:12px;}
+.voice-title.do{color:var(--gold);}
+.voice-title.dont{color:#cc3333;}
+.voice-item{font-size:13px;color:#555;padding:4px 0;border-bottom:0.5px solid #f5f5f5;}
+.voice-item:last-child{border-bottom:none;}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.contact-card{padding:1.5rem;background:#f8f7f4;border-radius:4px;}
+.contact-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.contact-value{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--black);}
+
+/* FOOTER */
+.bible-footer{background:var(--black);padding:40px 56px;display:flex;justify-content:space-between;align-items:center;}
+.bible-footer-logo{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--gold);letter-spacing:0.1em;}
+.bible-footer-info{font-family:'Share Tech Mono',monospace;font-size:9px;color:#333;letter-spacing:0.2em;text-align:right;line-height:2;}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-shield">
+    <svg viewBox="0 0 400 480" width="100" height="120" xmlns="http://www.w3.org/2000/svg">
+      <path d="M200 20 L380 80 L380 285 Q380 415 200 465 Q20 415 20 285 L20 80 Z" fill="#c8a84b"/>
+      <text x="200" y="335" text-anchor="middle" font-size="220" font-weight="900" fill="#0a0a0a" font-family="Arial Black,Arial,sans-serif">VA</text>
+    </svg>
+  </div>
+  <div class="cover-logo">VELD ARMOUR</div>
+  <div class="cover-div"><div class="cover-line"></div><div class="cover-d"></div><div class="cover-line"></div></div>
+  <div class="cover-tag">Built for the Veld</div>
+  <div class="cover-sub">Brand Bible & Identity Guide · 2026</div>
+  <div class="cover-meta">Veld Armour (Pty) Ltd · Reg: 2026/442101/07 · Florida, Gauteng, South Africa · v3.0</div>
+</div>
+
+<!-- 01 BRAND OVERVIEW -->
+<div class="section">
+  <div class="sec-num">01 · Brand Overview</div>
+  <div class="sec-title">WHO WE ARE</div>
+  <div class="sec-div"><div class="sec-line"></div><div class="sec-diamond"></div><div class="sec-line"></div></div>
+  <p><strong>Veld Armour</strong> is a proudly South African steel canopy manufacturer based in Florida, Roodepoort, Gauteng. We build premium CNC laser-cut steel canopies for South African bakkies — purpose-built for each vehicle make and model, hand-welded by skilled craftspeople, and finished to a standard the veld demands.</p>
+  <p>We were founded in 2026 with a simple belief: South African bakkie owners deserve a quality, locally-made steel canopy at a fair price, delivered on time, every time.</p>
+  <p><strong>Tagline:</strong> Built for the Veld<br>
+  <strong>Mission:</strong> Build the best steel canopy in South Africa and deliver it in 7 working days.<br>
+  <strong>Vision:</strong> The most trusted canopy brand for South African bakkie owners.</p>
+</div>
+
+<!-- 02 COLOURS -->
+<div class="section">
+  <div class="sec-num">02 · Colour Palette</div>
+  <div class="sec-title">BRAND COLOURS</div>
+  <div class="sec-div"><div class="sec-line"></div><div class="sec-diamond"></div><div class="sec-line"></div></div>
+  <div class="colours">
+    <div class="swatch-block">
+      <div class="swatch-color" style="background:#c8a84b;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Veld Gold</div>
+        <div class="swatch-hex">#C8A84B</div>
+        <div class="swatch-cmyk">CMYK: 0, 16, 63, 22</div>
+        <div class="swatch-cmyk">Pantone: 7409C</div>
+        <div class="swatch-cmyk">RGB: 200, 168, 75</div>
+      </div>
+    </div>
+    <div class="swatch-block">
+      <div class="swatch-color" style="background:#0a0a0a;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Armour Black</div>
+        <div class="swatch-hex">#0A0A0A</div>
+        <div class="swatch-cmyk">CMYK: 0, 0, 0, 96</div>
+        <div class="swatch-cmyk">RGB: 10, 10, 10</div>
+      </div>
+    </div>
+    <div class="swatch-block">
+      <div class="swatch-color" style="background:#f5f2ed;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Veld White</div>
+        <div class="swatch-hex">#F5F2ED</div>
+        <div class="swatch-cmyk">Off-white warm</div>
+        <div class="swatch-cmyk">RGB: 245, 242, 237</div>
+      </div>
+    </div>
+    <div class="swatch-block">
+      <div class="swatch-color" style="background:#e2c97e;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Gold Light</div>
+        <div class="swatch-hex">#E2C97E</div>
+        <div class="swatch-cmyk">Tints & highlights</div>
+        <div class="swatch-cmyk">RGB: 226, 201, 126</div>
+      </div>
+    </div>
+    <div class="swatch-block">
+      <div class="swatch-color" style="background:#8a6e28;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Gold Dark</div>
+        <div class="swatch-hex">#8A6E28</div>
+        <div class="swatch-cmyk">Shadows & depth</div>
+        <div class="swatch-cmyk">RGB: 138, 110, 40</div>
+      </div>
+    </div>
+    <div class="swatch-block">
+      <div class="swatch-color" style="background:#1a1a1a;border:0.5px solid #333;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Dark Grey</div>
+        <div class="swatch-hex">#1A1A1A</div>
+        <div class="swatch-cmyk">Backgrounds</div>
+        <div class="swatch-cmyk">RGB: 26, 26, 26</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 03 TYPOGRAPHY -->
+<div class="section">
+  <div class="sec-num">03 · Typography</div>
+  <div class="sec-title">FONTS</div>
+  <div class="sec-div"><div class="sec-line"></div><div class="sec-diamond"></div><div class="sec-line"></div></div>
+
+  <div class="font-demo">
+    <div class="font-sample" style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:#0a0a0a;letter-spacing:0.06em;line-height:1;">VELD ARMOUR</div>
+    <div class="font-meta">Bebas Neue — Display / Headlines / Brand Name</div>
+  </div>
+  <div class="font-demo">
+    <div class="font-sample" style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:#0a0a0a;letter-spacing:0.15em;text-transform:uppercase;">Built for the South African Veld</div>
+    <div class="font-meta">Barlow Condensed Bold — Sub-headlines / CTAs / Product names</div>
+  </div>
+  <div class="font-demo">
+    <div class="font-sample" style="font-family:'Barlow',sans-serif;font-size:15px;color:#444;line-height:1.8;">Premium steel canopies, CNC laser-cut and hand-welded in Florida, Gauteng. Purpose-built for your exact bakkie — no shortcuts, no compromises.</div>
+    <div class="font-meta">Barlow Regular — Body copy / Descriptions / Long form</div>
+  </div>
+  <div class="font-demo">
+    <div class="font-sample" style="font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:0.4em;color:#c8a84b;text-transform:uppercase;">Est. 2026 · Florida, Gauteng · South Africa</div>
+    <div class="font-meta">Share Tech Mono — Labels / Tags / Technical details / Captions</div>
+  </div>
+</div>
+
+<!-- 04 LOGO -->
+<div class="section">
+  <div class="sec-num">04 · Logo & Shield</div>
+  <div class="sec-title">BRAND MARK</div>
+  <div class="sec-div"><div class="sec-line"></div><div class="sec-diamond"></div><div class="sec-line"></div></div>
+  <p>The Veld Armour brand mark consists of two elements: the VA Shield and the VELD ARMOUR wordmark. Always use them together. Never alter the proportions, colours or letterforms.</p>
+  <div class="logo-grid" style="margin-top:1.5rem;">
+    <div class="logo-box dark">
+      <svg viewBox="0 0 400 480" width="80" height="96" xmlns="http://www.w3.org/2000/svg">
+        <path d="M200 20 L380 80 L380 285 Q380 415 200 465 Q20 415 20 285 L20 80 Z" fill="#c8a84b"/>
+        <text x="200" y="335" text-anchor="middle" font-size="220" font-weight="900" fill="#0a0a0a" font-family="Arial Black,Arial,sans-serif">VA</text>
+      </svg>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#c8a84b;letter-spacing:0.1em;">VELD ARMOUR</div>
+      <div class="logo-label">Primary — Dark background</div>
+    </div>
+    <div class="logo-box" style="background:#f5f2ed;">
+      <svg viewBox="0 0 400 480" width="80" height="96" xmlns="http://www.w3.org/2000/svg">
+        <path d="M200 20 L380 80 L380 285 Q380 415 200 465 Q20 415 20 285 L20 80 Z" fill="#0a0a0a"/>
+        <text x="200" y="335" text-anchor="middle" font-size="220" font-weight="900" fill="#c8a84b" font-family="Arial Black,Arial,sans-serif">VA</text>
+      </svg>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#0a0a0a;letter-spacing:0.1em;">VELD ARMOUR</div>
+      <div class="logo-label">Reversed — Light background</div>
+    </div>
+  </div>
+  <p style="margin-top:1.5rem;font-size:12px;color:#888;"><strong>Clear space:</strong> Always maintain a minimum clear space equal to the height of the "V" in VELD around the entire brand mark. Never place the logo on a busy background without a solid colour backing.</p>
+</div>
+
+<!-- 05 PRICING -->
+<div class="section">
+  <div class="sec-num">05 · Pricing</div>
+  <div class="sec-title">PRODUCT PRICING</div>
+  <div class="sec-div"><div class="sec-line"></div><div class="sec-diamond"></div><div class="sec-line"></div></div>
+  <div class="price-cards">
+    <div class="price-card">
+      <div class="price-card-label">Double Cab · All Makes</div>
+      <div class="price-card-price">R23,900</div>
+      <div class="price-card-sub">Fitted · 7 Working Days</div>
+      <div class="price-card-dep">50% deposit = R11,950<br>Balance on collection or delivery</div>
+    </div>
+    <div class="price-card">
+      <div class="price-card-label">Extra Cab · All Makes</div>
+      <div class="price-card-price">R25,900</div>
+      <div class="price-card-sub">Fitted · 7 Working Days</div>
+      <div class="price-card-dep">50% deposit = R12,950<br>Balance on collection or delivery</div>
+    </div>
+  </div>
+  <div style="background:#f8f7f4;border-left:3px solid var(--gold);padding:16px 20px;border-radius:0 4px 4px 0;margin-bottom:1.5rem;">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:8px;">Standard Inclusions — Every Canopy</div>
+    <div style="font-size:13px;color:#555;line-height:2;">CNC laser-cut 1.5mm 3CR12 steel panels · Powder coated finish · Tinted glass windows · Integrated roof rack · High-security locks · Gas strut side doors · Weatherproof rubber seals</div>
+  </div>
+  <div style="background:#f8f7f4;border-left:3px solid #333;padding:16px 20px;border-radius:0 4px 4px 0;margin-bottom:1.5rem;">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.3em;color:#888;text-transform:uppercase;margin-bottom:8px;">Optional Extras — Priced on Application</div>
+    <div style="font-size:13px;color:#555;line-height:2;">Kitchen Unit · Fridge Slider · Dual Drawer System · Bin Slider · Roof Mount Table · Ammo Crate Rack</div>
+  </div>
+  <p style="font-size:12px;color:#888;"><strong>Delivery + Fitting:</strong> R2,500 nationwide. Collection from Florida, Roodepoort, Gauteng — included in price.<br>
+  <strong>Single Cab:</strong> Available on request only — NOT advertised publicly.<br>
+  <strong>Colours:</strong> Matte Black / White / Grey — powder coated only. No gloss finishes.</p>
+</div>
+
+<!-- 06 VEHICLES -->
+<div class="section">
+  <div class="sec-num">06 · Product Range</div>
+  <div class="sec-title">VEHICLES WE FIT</div>
+  <div class="sec-div"><div class="sec-line"></div><div class="sec-diamond"></div><div class="sec-line"></div></div>
+  <div style="overflow-x:auto;">
+  <table class="prod-table">
+    <thead>
+      <tr><th>Make</th><th>Model</th><th>DC</th><th>EC</th><th>DC Price</th><th>EC Price</th><th>Kitchen ✦</th><th>Slider ✦</th><th>Roof Table ✦</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><div class="make">Toyota</div></td><td>Hilux GD6 Revo</td><td class="tick">✓</td><td class="tick">✓</td><td class="price">R23,900</td><td class="price">R25,900</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+      <tr><td><div class="make">Toyota</div></td><td>Hilux D4D</td><td class="tick">✓</td><td class="tick">✓</td><td class="price">R23,900</td><td class="price">R25,900</td><td class="cross">—</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+      <tr><td><div class="make">Toyota</div></td><td>Land Cruiser DC</td><td class="tick">✓</td><td class="cross">—</td><td class="price">R23,900</td><td class="cross">—</td><td class="tick">✓</td><td class="cross">—</td><td class="cross">—</td></tr>
+      <tr><td><div class="make">Ford</div></td><td>Ranger T5</td><td class="tick">✓</td><td class="tick">✓</td><td class="price">R23,900</td><td class="price">R25,900</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td></tr>
+      <tr><td><div class="make">Ford</div></td><td>Ranger T6</td><td class="tick">✓</td><td class="tick">✓</td><td class="price">R23,900</td><td class="price">R25,900</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+      <tr><td><div class="make">Ford</div></td><td>Ranger T7</td><td class="tick">✓</td><td class="tick">✓</td><td class="price">R23,900</td><td class="price">R25,900</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+      <tr><td><div class="make">Ford</div></td><td>Ranger Raptor</td><td class="tick">✓</td><td class="cross">—</td><td class="price">R23,900</td><td class="cross">—</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+      <tr><td><div class="make">VW</div></td><td>Amarok DC</td><td class="tick">✓</td><td class="cross">—</td><td class="price">R23,900</td><td class="cross">—</td><td class="tick">✓</td><td class="cross">—</td><td class="tick">✓</td></tr>
+      <tr><td><div class="make">VW</div></td><td>Amarok Mk2</td><td class="tick">✓</td><td class="cross">—</td><td class="price">R23,900</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td></tr>
+      <tr><td><div class="make">Isuzu</div></td><td>KB7 / D-Max</td><td class="tick">✓</td><td class="tick">✓</td><td class="price">R23,900</td><td class="price">R25,900</td><td class="tick">✓</td><td class="cross">—</td><td class="tick">✓</td></tr>
+      <tr><td><div class="make">GWM</div></td><td>P-Series DC</td><td class="tick">✓</td><td class="cross">—</td><td class="price">R23,900</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td></tr>
+      <tr><td><div class="make">Mazda</div></td><td>BT-50</td><td class="tick">✓</td><td class="cross">—</td><td class="price">R23,900</td><td class="cross">—</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+      <tr><td><div class="make">Mahindra</div></td><td>Karoo DC</td><td class="tick">✓</td><td class="cross">—</td><td class="price">R23,900</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:11px;color:#888;margin-top:8px;">✦ Optional extras — priced on application · DC = Double Cab · EC = Extra Cab</p>
+</div>
+
+<!-- 07 VOICE & TONE -->
+<div class="section">
+  <div class="sec-num">07 · Voice & Tone</div>
+  <div class="sec-title">BRAND VOICE</div>
+  <div class="sec-div"><div class="sec-line"></div><div class="sec-diamond"></div><div class="sec-line"></div></div>
+  <p>Veld Armour speaks like a tradesperson who is proud of their work — confident, direct, no fluff. We are South African through and through. We don't oversell. We let the product speak.</p>
+  <div class="voice-grid">
+    <div class="voice-card do">
+      <div class="voice-title do">✓ We Do Say</div>
+      <div class="voice-item">Built by hand in Gauteng</div>
+      <div class="voice-item">Steel. Powder coated. Ready in 7 days.</div>
+      <div class="voice-item">Your bakkie deserves better</div>
+      <div class="voice-item">50% deposit secures your build</div>
+      <div class="voice-item">CNC laser-cut. Purpose-built for your model.</div>
+      <div class="voice-item">No shortcuts. No compromises.</div>
+      <div class="voice-item">Built for the Veld 🇿🇦</div>
+    </div>
+    <div class="voice-card dont">
+      <div class="voice-title dont">✗ We Don't Say</div>
+      <div class="voice-item">Any competitor names</div>
+      <div class="voice-item">Single Cab in public marketing</div>
+      <div class="voice-item">Gloss, shiny or chrome finishes</div>
+      <div class="voice-item">Vague delivery promises</div>
+      <div class="voice-item">Overly corporate or formal language</div>
+      <div class="voice-item">Price comparisons to other brands</div>
+      <div class="voice-item">Anything that sounds like an excuse</div>
+    </div>
+  </div>
+</div>
+
+<!-- 08 TEAM -->
+<div class="section">
+  <div class="sec-num">08 · The Team</div>
+  <div class="sec-title">WHO WE ARE</div>
+  <div class="sec-div"><div class="sec-line"></div><div class="sec-diamond"></div><div class="sec-line"></div></div>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-label">Founder & Owner</div>
+      <div class="contact-value">Storm Mans</div>
+      <div style="font-size:12px;color:#888;margin-top:6px;">082 650 5848 · info@veldarmour.co.za</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-label">Sales</div>
+      <div class="contact-value">Deniro Van Der Walt</div>
+      <div style="font-size:12px;color:#888;margin-top:6px;">076 849 3220 · deniro@veldarmour.co.za</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-label">Operations & Welding</div>
+      <div class="contact-value">Evander Digomo</div>
+      <div style="font-size:12px;color:#888;margin-top:6px;">072 247 9023 · evander@veldarmour.co.za</div>
+    </div>
+  </div>
+  <p style="margin-top:1.5rem;font-size:12px;color:#888;">Every canopy is CNC laser-cut, hand-welded and powder coated in-house in Florida, Roodepoort — backed by Deniro's 7-year design library of 2,374 vehicle-specific DXF files.</p>
+</div>
+
+<!-- 09 CONTACT -->
+<div class="section">
+  <div class="sec-num">09 · Contact & Channels</div>
+  <div class="sec-title">CONTACT DETAILS</div>
+  <div class="sec-div"><div class="sec-line"></div><div class="sec-diamond"></div><div class="sec-line"></div></div>
+  <div class="contact-grid">
+    <div class="contact-card"><div class="contact-label">WhatsApp Business</div><div class="contact-value">+27 66 437 4661</div></div>
+    <div class="contact-card"><div class="contact-label">Email</div><div class="contact-value">info@veldarmour.co.za</div></div>
+    <div class="contact-card"><div class="contact-label">Website</div><div class="contact-value">veldarmour.co.za</div></div>
+    <div class="contact-card"><div class="contact-label">Instagram</div><div class="contact-value">@veldarmour</div></div>
+    <div class="contact-card"><div class="contact-label">Location</div><div class="contact-value">Florida, Roodepoort, Gauteng</div></div>
+    <div class="contact-card"><div class="contact-label">Facebook</div><div class="contact-value">Veld Armour</div></div>
+  </div>
+
+  <div style="margin-top:2rem;padding:1.5rem;background:#0a0a0a;border-radius:4px;">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;">Banking — FNB Gold Business Account</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <div style="font-size:12px;color:#888;">Account Name: <span style="color:#f5f2ed;">Veld Armour (Pty) Ltd</span></div>
+      <div style="font-size:12px;color:#888;">Account Number: <span style="color:#c8a84b;font-family:'Share Tech Mono',monospace;">63213519698</span></div>
+      <div style="font-size:12px;color:#888;">Bank: <span style="color:#f5f2ed;">First National Bank (FNB)</span></div>
+      <div style="font-size:12px;color:#888;">Branch Code: <span style="color:#c8a84b;font-family:'Share Tech Mono',monospace;">250655</span></div>
+      <div style="font-size:12px;color:#888;">Account Type: <span style="color:#f5f2ed;">Gold Business Account</span></div>
+      <div style="font-size:12px;color:#888;">Swift: <span style="color:#c8a84b;font-family:'Share Tech Mono',monospace;">FIRNZAJJ</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="bible-footer">
+  <div class="bible-footer-logo">VELD ARMOUR</div>
+  <div class="bible-footer-info">
+    <div>Veld Armour (Pty) Ltd · Reg: 2026/442101/07</div>
+    <div>info@veldarmour.co.za · +27 66 437 4661</div>
+    <div>Brand Bible v3.0 · June 2026 · Confidential</div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

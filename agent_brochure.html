@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veld Armour — Steel Canopies — Built for the Veld</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#c8a84b;--black:#0a0a0a;--white:#f5f2ed;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);}
+.wrap{max-width:900px;margin:0 auto;}
+
+/* HERO */
+.hero{padding:50px 40px;text-align:center;background:var(--black);border-bottom:1px solid #c8a84b33;}
+.hero svg{width:140px;height:168px;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:54px;letter-spacing:0.08em;color:var(--gold);margin:14px 0 2px;}
+.hero .tag{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:0.5em;color:#999;text-transform:uppercase;}
+.hero .lead{margin-top:18px;font-size:17px;color:#ccc;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.6;}
+
+/* SECTION */
+.section{padding:40px;border-bottom:1px solid #1a1a1a;}
+.sec-tag{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.4em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:0.04em;margin-bottom:18px;}
+
+/* PRICING */
+.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+.price-card{background:#111;border:1px solid #c8a84b33;border-radius:6px;padding:24px;text-align:center;}
+.price-label{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.3em;color:#888;text-transform:uppercase;margin-bottom:8px;}
+.price-val{font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--gold);}
+.price-dep{font-family:'Share Tech Mono',monospace;font-size:10px;color:#777;margin-top:6px;}
+
+.feature-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:14px;color:#ddd;}
+.feature-list div{padding-left:18px;position:relative;}
+.feature-list div::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:700;}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;text-align:left;padding:8px 6px;border-bottom:2px solid var(--gold);}
+td{padding:8px 6px;border-bottom:1px solid #1a1a1a;color:#ddd;}
+.price-cell{color:var(--gold);font-family:'Share Tech Mono',monospace;font-weight:700;}
+.note{font-size:12px;color:#666;margin-top:14px;}
+
+/* COLORS */
+.color-row{display:flex;gap:16px;margin-top:6px;}
+.swatch{flex:1;border-radius:6px;padding:30px 0;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;}
+.sw-black{background:#0a0a0a;border:1px solid #333;color:#fff;}
+.sw-white{background:#f5f2ed;color:#0a0a0a;}
+.sw-grey{background:#7d7d7d;color:#fff;}
+
+/* PROCESS */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.step{background:#111;border-radius:6px;padding:18px 14px;}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--gold);}
+.step-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:0.05em;margin:4px 0 6px;}
+.step-text{font-size:12px;color:#999;line-height:1.5;}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,#1a1a1a,#0a0a0a);text-align:center;padding:50px 40px;}
+.cta-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);letter-spacing:0.05em;}
+.cta-sub{margin:10px 0 22px;font-size:14px;color:#bbb;}
+.cta-btn{display:inline-block;background:var(--gold);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;letter-spacing:0.15em;text-transform:uppercase;padding:14px 36px;border-radius:4px;text-decoration:none;}
+
+/* FOOTER */
+.footer{padding:30px 40px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.15em;color:#555;}
+.footer a{color:var(--gold);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HERO -->
+<div class="hero">
+  <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+    <path d="M200 20 L380 80 L380 285 Q380 415 200 465 Q20 415 20 285 L20 80 Z" fill="#c8a84b"/>
+    <text x="200" y="335" text-anchor="middle" font-size="220" font-weight="900" fill="#0a0a0a" font-family="Arial Black, Arial, sans-serif">VA</text>
+  </svg>
+  <h1>VELD ARMOUR</h1>
+  <div class="tag">Built for the Veld</div>
+  <p class="lead">Premium CNC laser-cut steel canopies, hand-welded and powder coated in Florida, Roodepoort. Engineered for South African bakkies — strong, secure, and built to last on the road and off it.</p>
+</div>
+
+<!-- PRICING -->
+<div class="section">
+  <div class="sec-tag">01 · Pricing</div>
+  <div class="sec-title">FAIR PRICES, NO HIDDEN COSTS</div>
+  <div class="price-grid">
+    <div class="price-card">
+      <div class="price-label">Double Cab</div>
+      <div class="price-val">R23,900</div>
+      <div class="price-dep">50% deposit = R11,950 · Balance on delivery</div>
+    </div>
+    <div class="price-card">
+      <div class="price-label">Extra / Single Cab</div>
+      <div class="price-val">R25,900</div>
+      <div class="price-dep">50% deposit = R12,950 · Balance on delivery</div>
+    </div>
+  </div>
+  <p style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.2em;color:#666;text-transform:uppercase;">Delivery + fitting available nationwide · R2,500 · Land Cruiser DC & Mahindra Karoo DC priced at R25,900</p>
+</div>
+
+<!-- WHAT'S INCLUDED -->
+<div class="section">
+  <div class="sec-tag">02 · Specification</div>
+  <div class="sec-title">EVERY CANOPY INCLUDES</div>
+  <div class="feature-list">
+    <div>1.5mm 3CR12 CNC laser-cut steel</div>
+    <div>Hand-welded on-site</div>
+    <div>Powder coated finish</div>
+    <div>Tinted side windows</div>
+    <div>Integrated roof rack</div>
+    <div>High-security locking system</div>
+    <div>Gas strut assisted doors</div>
+    <div>Weatherproof rubber seals</div>
+  </div>
+</div>
+
+<!-- COLOURS -->
+<div class="section">
+  <div class="sec-tag">03 · Finishes</div>
+  <div class="sec-title">CHOOSE YOUR FINISH</div>
+  <div class="color-row">
+    <div class="swatch sw-black">Matte Black</div>
+    <div class="swatch sw-white">White</div>
+    <div class="swatch sw-grey">Grey</div>
+  </div>
+  <p class="note">All finishes powder coated — no gloss or shiny options.</p>
+</div>
+
+<!-- VEHICLE FITMENT -->
+<div class="section">
+  <div class="sec-tag">04 · Fitment</div>
+  <div class="sec-title">VEHICLES WE FIT</div>
+  <table>
+    <thead><tr><th>Make</th><th>Model</th><th>DC Price</th><th>EC/SC Price</th></tr></thead>
+    <tbody>
+      <tr><td>Toyota</td><td>Hilux GD6 Revo / D4D</td><td class="price-cell">R23,900</td><td class="price-cell">R25,900</td></tr>
+      <tr><td>Toyota</td><td>Land Cruiser DC</td><td class="price-cell">R25,900</td><td>—</td></tr>
+      <tr><td>Ford</td><td>Ranger T5 / T6 / T7</td><td class="price-cell">R23,900</td><td class="price-cell">R25,900</td></tr>
+      <tr><td>Ford</td><td>Ranger Raptor</td><td class="price-cell">R23,900</td><td>—</td></tr>
+      <tr><td>VW</td><td>Amarok DC / Mk2</td><td class="price-cell">R23,900</td><td>—</td></tr>
+      <tr><td>Isuzu</td><td>KB7 / D-Max</td><td class="price-cell">R23,900</td><td class="price-cell">R25,900</td></tr>
+      <tr><td>GWM</td><td>P-Series DC</td><td class="price-cell">R23,900</td><td>—</td></tr>
+      <tr><td>Mazda</td><td>BT-50</td><td class="price-cell">R23,900</td><td>—</td></tr>
+      <tr><td>Mahindra</td><td>Karoo DC</td><td class="price-cell">R25,900</td><td>—</td></tr>
+      <tr><td>Nissan</td><td>Navara</td><td class="price-cell">R23,900</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Not on the list? WhatsApp us your make and model →</p>
+</div>
+
+<!-- PROCESS -->
+<div class="section">
+  <div class="sec-tag">05 · How It Works</div>
+  <div class="sec-title">FROM ORDER TO DELIVERY</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Order</div>
+      <div class="step-text">WhatsApp your vehicle details. We confirm fitment and price.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">Deposit</div>
+      <div class="step-text">50% deposit secures your build slot. Build starts within 24 hours.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">We Build</div>
+      <div class="step-text">CNC cut, welded, rubberised and powder coated in Florida, Gauteng. 7 working days.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-title">Collect or Deliver</div>
+      <div class="step-text">Collect from our workshop or we deliver and fit nationwide for R2,500.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <div class="cta-title">READY TO ARMOUR YOUR BAKKIE?</div>
+  <p class="cta-sub">WhatsApp your vehicle details and we respond within the hour.<br>50% deposit starts your build immediately.</p>
+  <a class="cta-btn" href="https://wa.me/27664374661">WhatsApp Us Now</a>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  VELD ARMOUR (PTY) LTD · Florida, Roodepoort, Gauteng · Est. 2026<br>
+  <a href="https://veldarmour.co.za">veldarmour.co.za</a> · <a href="https://wa.me/27664374661">WhatsApp</a> · <a href="mailto:info@veldarmour.co.za">info@veldarmour.co.za</a>
+</div>
+
+</div>
+</body>
+</html>

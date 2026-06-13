@@ -1,0 +1,10 @@
+<svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="480" fill="#0a0a0a"/>
+  <g transform="translate(60,40)">
+    <path d="M160 0 L304 48 L304 196 Q304 316 160 356 Q16 316 16 196 L16 48 Z" fill="#c8a84b"/>
+    <text x="160" y="265" text-anchor="middle" font-size="180" font-weight="900" fill="#0a0a0a" font-family="Arial Black, Arial, sans-serif">VA</text>
+  </g>
+  <text x="780" y="245" text-anchor="end" font-size="76" font-weight="700" letter-spacing="6" fill="#c8a84b" font-family="Arial, sans-serif">VELD</text>
+  <text x="780" y="320" text-anchor="end" font-size="76" font-weight="700" letter-spacing="6" fill="#c8a84b" font-family="Arial, sans-serif">ARMOUR</text>
+  <text x="780" y="365" text-anchor="end" font-size="20" letter-spacing="8" fill="#c8a84b" font-family="monospace, Arial">BUILT FOR THE VELD</text>
+</svg>
