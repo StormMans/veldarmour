@@ -1,0 +1,706 @@
+{
+ "fold": [
+  {
+   "no": "VA-BB-01",
+   "name": "Centre panel",
+   "status": "OK",
+   "bbox": "835 x 185 x 69",
+   "clash": "none",
+   "note": "sheet 2: section 82.15 / 80.34 / 48.26 / 15 lip, 835 long",
+   "dims": [
+    835.0,
+    185.37805775544302,
+    69.37063911849665
+   ],
+   "sec": "165.7 x 80.0  (dwg 80.34 x 82.15)"
+  },
+  {
+   "no": "VA-BB-02",
+   "name": "End panel (item 2)",
+   "status": "OK",
+   "bbox": "626 x 514 x 269",
+   "clash": "none",
+   "note": "",
+   "dims": [
+    626.3505938859879,
+    513.9612318190598,
+    268.53792591992
+   ],
+   "sec": ""
+  },
+  {
+   "no": "VA-BB-03",
+   "name": "Upright RH",
+   "status": "OK",
+   "bbox": "306 x 763 x 43",
+   "clash": "none",
+   "note": "sheet 4: 56.32 joggle offset, 744.48 tall",
+   "dims": [
+    306.46838866,
+    762.595992386877,
+    43.02817803267949
+   ],
+   "sec": "759.9 x 56.3  (dwg 56.32)"
+  },
+  {
+   "no": "VA-BB-04",
+   "name": "End panel, opposite hand (item 4)",
+   "status": "OK",
+   "bbox": "626 x 514 x 269",
+   "clash": "none",
+   "note": "",
+   "dims": [
+    626.3505938859879,
+    513.9521984543225,
+    268.5379259199199
+   ],
+   "sec": ""
+  },
+  {
+   "no": "VA-BB-05",
+   "name": "End plate",
+   "status": "OK",
+   "bbox": "264 x 78 x 14",
+   "clash": "none",
+   "note": "sheet 6: 78 x 176.58 plan, 25.47 flange at 40.84 deg",
+   "dims": [
+    264.4466590991438,
+    78.0,
+    14.364573652606566
+   ],
+   "sec": "263.7 x 19.3"
+  },
+  {
+   "no": "VA-BB-06",
+   "name": "Bracket 1 (chassis bracket)",
+   "status": "OK",
+   "bbox": "184 x 213 x 55",
+   "clash": "none",
+   "note": "sheet 7: 183.63 x 116.00 x 79.00 U-channel",
+   "dims": [
+    183.6330744109,
+    212.94400043878974,
+    54.52484094075287
+   ],
+   "sec": "115.1 x 78.6  (dwg 116 x 79)"
+  },
+  {
+   "no": "VA-BB-07",
+   "name": "Recovery lug",
+   "status": "flat part",
+   "bbox": "-",
+   "clash": "-",
+   "note": ""
+  },
+  {
+   "no": "VA-BB-11",
+   "name": "Spot bracket (light mount)",
+   "status": "OK",
+   "bbox": "60 x 77 x 17",
+   "clash": "none",
+   "note": "sheet 10: 60 wide saddle",
+   "dims": [
+    60.0,
+    76.54837476485864,
+    16.882555419645225
+   ],
+   "sec": "73.1 x 21.0"
+  },
+  {
+   "no": "VA-BB-12",
+   "name": "Centre panel P2 (top plate)",
+   "status": "OK",
+   "bbox": "835 x 261 x 33",
+   "clash": "none",
+   "note": "sheet 11: 238.64 wide, legs 40 / 20, 835 long",
+   "dims": [
+    835.0,
+    260.7638640292886,
+    33.35881369848718
+   ],
+   "sec": "238.1 x 39.7  (dwg 238.64 x 40)"
+  },
+  {
+   "no": "VA-BB-13",
+   "name": "Centre panel P3 (lower channel)",
+   "status": "OK",
+   "bbox": "835 x 115 x 34",
+   "clash": "none",
+   "note": "sheet 12: 83 x 40 channel, 835 long",
+   "dims": [
+    835.0,
+    115.02317231451654,
+    33.52535819148067
+   ],
+   "sec": "82.7 x 39.8  (dwg 83 x 40)"
+  },
+  {
+   "no": "VA-BB-14",
+   "name": "Upright LH",
+   "status": "OK",
+   "bbox": "306 x 763 x 43",
+   "clash": "none",
+   "note": "",
+   "dims": [
+    306.46838866,
+    762.595992386877,
+    43.02817803267949
+   ],
+   "sec": "759.9 x 56.3  (dwg 56.32)"
+  },
+  {
+   "no": "VA-BB-17",
+   "name": "Face 1 (RH trim strip)",
+   "status": "OK",
+   "bbox": "652 x 87 x 214",
+   "clash": "none",
+   "note": "",
+   "dims": [
+    652.363453821941,
+    87.07136677779732,
+    214.48187165895342
+   ],
+   "sec": "531.0 x 248.5"
+  },
+  {
+   "no": "VA-BB-18",
+   "name": "Face 1 LH (trim strip)",
+   "status": "OK",
+   "bbox": "652 x 87 x 214",
+   "clash": "none",
+   "note": "",
+   "dims": [
+    652.363453821941,
+    87.07136677774847,
+    214.48187165895342
+   ],
+   "sec": "531.0 x 248.5"
+  }
+ ],
+ "brake": [
+  {
+   "no": "VA-BB-01",
+   "seq": 1,
+   "dir": "UP",
+   "ang": 90.0,
+   "r": 2.5,
+   "t": 3.0,
+   "L": 835.0,
+   "V": 24.0,
+   "tonnes": 22.075152905198777,
+   "flange": 12.500220984199984,
+   "verdict": "SHORT FLANGE 12.5 < 17.0 -> use V=18 | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-01",
+   "seq": 2,
+   "dir": "DOWN",
+   "ang": 54.76,
+   "r": 2.5,
+   "t": 3.0,
+   "L": 835.0,
+   "V": 24.0,
+   "tonnes": 22.075152905198777,
+   "flange": 33.0309274663,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-01",
+   "seq": 3,
+   "dir": "UP",
+   "ang": 54.76,
+   "r": 2.5,
+   "t": 3.0,
+   "L": 835.0,
+   "V": 24.0,
+   "tonnes": 22.075152905198777,
+   "flange": 79.50763820770001,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-02",
+   "seq": 1,
+   "dir": "DOWN",
+   "ang": 90.0,
+   "r": 2.5,
+   "t": 3.0,
+   "L": 484.8624002462281,
+   "V": 24.0,
+   "tonnes": 12.818457034032544,
+   "flange": null,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-02",
+   "seq": 2,
+   "dir": "DOWN",
+   "ang": 48.0,
+   "r": 2.5,
+   "t": 3.0,
+   "L": 498.80665529621604,
+   "V": 24.0,
+   "tonnes": 13.187105611730237,
+   "flange": null,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-02",
+   "seq": 3,
+   "dir": "UP",
+   "ang": 45.0,
+   "r": 2.5,
+   "t": 3.0,
+   "L": 503.48908066582055,
+   "V": 24.0,
+   "tonnes": 13.310896337480179,
+   "flange": null,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-02",
+   "seq": 4,
+   "dir": "DOWN",
+   "ang": 90.0,
+   "r": 2.5,
+   "t": 3.0,
+   "L": 503.88348183778396,
+   "V": 24.0,
+   "tonnes": 13.321323243081475,
+   "flange": null,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-02",
+   "seq": 5,
+   "dir": "DOWN",
+   "ang": 90.0,
+   "r": 2.5,
+   "t": 3.0,
+   "L": 296.4492790511341,
+   "V": 24.0,
+   "tonnes": 7.837321154119433,
+   "flange": null,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-02",
+   "seq": 6,
+   "dir": "DOWN",
+   "ang": 90.0,
+   "r": 2.5,
+   "t": 3.0,
+   "L": 216.14477191562628,
+   "V": 24.0,
+   "tonnes": 5.714286095445226,
+   "flange": null,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-03",
+   "seq": 1,
+   "dir": "DOWN",
+   "ang": 20.0,
+   "r": 3.0,
+   "t": 5.0,
+   "L": 186.1976059387,
+   "V": 40.0,
+   "tonnes": 8.204272697961578,
+   "flange": 150.02471637879995,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-03",
+   "seq": 2,
+   "dir": "UP",
+   "ang": 20.0,
+   "r": 3.0,
+   "t": 5.0,
+   "L": 141.0606853362,
+   "V": 40.0,
+   "tonnes": 6.215441512392706,
+   "flange": 150.02471637879995,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-04",
+   "seq": 1,
+   "dir": "DOWN",
+   "ang": 90.0,
+   "r": 2.5,
+   "t": 3.0,
+   "L": 484.86240024622805,
+   "V": 24.0,
+   "tonnes": 12.818457034032544,
+   "flange": null,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-04",
+   "seq": 2,
+   "dir": "DOWN",
+   "ang": 48.0,
+   "r": 2.5,
+   "t": 3.0,
+   "L": 498.80665529621604,
+   "V": 24.0,
+   "tonnes": 13.187105611730237,
+   "flange": null,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-04",
+   "seq": 3,
+   "dir": "UP",
+   "ang": 45.0,
+   "r": 2.5,
+   "t": 3.0,
+   "L": 503.48908066582055,
+   "V": 24.0,
+   "tonnes": 13.310896337480179,
+   "flange": null,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-04",
+   "seq": 4,
+   "dir": "DOWN",
+   "ang": 90.0,
+   "r": 2.5,
+   "t": 3.0,
+   "L": 503.8834818377839,
+   "V": 24.0,
+   "tonnes": 13.321323243081475,
+   "flange": null,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-04",
+   "seq": 5,
+   "dir": "DOWN",
+   "ang": 90.0,
+   "r": 2.5,
+   "t": 3.0,
+   "L": 296.44927905113406,
+   "V": 24.0,
+   "tonnes": 7.837321154119431,
+   "flange": null,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-04",
+   "seq": 6,
+   "dir": "DOWN",
+   "ang": 90.0,
+   "r": 2.5,
+   "t": 3.0,
+   "L": 216.14477191562628,
+   "V": 24.0,
+   "tonnes": 5.714286095445226,
+   "flange": null,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-05",
+   "seq": 1,
+   "dir": "UP",
+   "ang": 40.84,
+   "r": 1.5,
+   "t": 3.0,
+   "L": 78.0,
+   "V": 24.0,
+   "tonnes": 2.0621100917431194,
+   "flange": 25.469811262000007,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-06",
+   "seq": 1,
+   "dir": "DOWN",
+   "ang": 90.0,
+   "r": 3.0,
+   "t": 5.0,
+   "L": 183.6330744109,
+   "V": 40.0,
+   "tonnes": 8.091273844455813,
+   "flange": 74.926990817,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-06",
+   "seq": 2,
+   "dir": "DOWN",
+   "ang": 90.0,
+   "r": 3.0,
+   "t": 5.0,
+   "L": 183.6330744109,
+   "V": 40.0,
+   "tonnes": 8.091273844455813,
+   "flange": 74.92699081700002,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-11",
+   "seq": 1,
+   "dir": "DOWN",
+   "ang": 50.0,
+   "r": 1.25,
+   "t": 2.0,
+   "L": 49.740549130800005,
+   "V": 16.0,
+   "tonnes": 0.8766708404398901,
+   "flange": 25.2020298608,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-11",
+   "seq": 2,
+   "dir": "DOWN",
+   "ang": 50.0,
+   "r": 1.25,
+   "t": 2.0,
+   "L": 49.740549130800005,
+   "V": 16.0,
+   "tonnes": 0.8766708404398901,
+   "flange": 25.20202986080001,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-12",
+   "seq": 1,
+   "dir": "UP",
+   "ang": 90.0,
+   "r": 2.0,
+   "t": 3.0,
+   "L": 835.0,
+   "V": 24.0,
+   "tonnes": 22.075152905198777,
+   "flange": 17.5132741229,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-12",
+   "seq": 2,
+   "dir": "UP",
+   "ang": 90.0,
+   "r": 2.0,
+   "t": 3.0,
+   "L": 835.0,
+   "V": 24.0,
+   "tonnes": 22.075152905198777,
+   "flange": 37.5132741228,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-13",
+   "seq": 1,
+   "dir": "UP",
+   "ang": 90.0,
+   "r": 2.5,
+   "t": 3.0,
+   "L": 835.0,
+   "V": 24.0,
+   "tonnes": 22.075152905198777,
+   "flange": 37.5002209842,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-13",
+   "seq": 2,
+   "dir": "UP",
+   "ang": 90.0,
+   "r": 2.5,
+   "t": 3.0,
+   "L": 835.0,
+   "V": 24.0,
+   "tonnes": 22.075152905198777,
+   "flange": 37.5002209842,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-14",
+   "seq": 1,
+   "dir": "DOWN",
+   "ang": 20.0,
+   "r": 3.0,
+   "t": 5.0,
+   "L": 186.1976059387,
+   "V": 40.0,
+   "tonnes": 8.204272697961578,
+   "flange": 150.02471637879995,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-14",
+   "seq": 2,
+   "dir": "UP",
+   "ang": 20.0,
+   "r": 3.0,
+   "t": 5.0,
+   "L": 141.06068533620004,
+   "V": 40.0,
+   "tonnes": 6.215441512392709,
+   "flange": 150.02471637879995,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-17",
+   "seq": 1,
+   "dir": "DOWN",
+   "ang": 90.0,
+   "r": 1.25,
+   "t": 2.0,
+   "L": 34.9757071142,
+   "V": 16.0,
+   "tonnes": 0.6164423812482345,
+   "flange": 246.9847512013,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-17",
+   "seq": 2,
+   "dir": "DOWN",
+   "ang": 17.0,
+   "r": 1.25,
+   "t": 2.0,
+   "L": 34.97565963360776,
+   "V": 16.0,
+   "tonnes": 0.6164415444088462,
+   "flange": 84.36510980435,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-17",
+   "seq": 3,
+   "dir": "DOWN",
+   "ang": 162.0,
+   "r": 42.0,
+   "t": 2.0,
+   "L": 34.975659633507924,
+   "V": null,
+   "tonnes": 0,
+   "flange": null,
+   "verdict": "roll/bump form (R42)"
+  },
+  {
+   "no": "VA-BB-18",
+   "seq": 1,
+   "dir": "DOWN",
+   "ang": 90.0,
+   "r": 1.25,
+   "t": 2.0,
+   "L": 34.975707114200006,
+   "V": 16.0,
+   "tonnes": 0.6164423812482346,
+   "flange": 246.9847512013,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-18",
+   "seq": 2,
+   "dir": "DOWN",
+   "ang": 17.0,
+   "r": 1.25,
+   "t": 2.0,
+   "L": 34.97565963360776,
+   "V": 16.0,
+   "tonnes": 0.6164415444088462,
+   "flange": 84.36510980435,
+   "verdict": "OK | R<1T sharp-nose"
+  },
+  {
+   "no": "VA-BB-18",
+   "seq": 3,
+   "dir": "DOWN",
+   "ang": 162.0,
+   "r": 42.0,
+   "t": 2.0,
+   "L": 34.975659633507924,
+   "V": null,
+   "tonnes": 0,
+   "flange": null,
+   "verdict": "roll/bump form (R42)"
+  }
+ ],
+ "struct": [
+  {
+   "item": "Recovery lug VA-BB-07 (12 mm 304, dia 30, R35 boss)",
+   "lines": [
+    "Net tension at hole: 2 x 20 x 12 x 210 MPa = 101 kN (10.3 t) at yield",
+    "Shear tear-out (2 planes x 20 mm): 60 kN (6.2 t) at yield",
+    "Pin bearing (dia 30 x 12, 1.5 Fy): 113 kN (11.6 t)",
+    "Governing: tear-out 60 kN (6.2 t) at yield, ~150 kN (15.3 t) ultimate per lug - before the weld to the 3 mm end panel is considered.",
+    "VERDICT: at 12 mm / R35 the lug itself carries ~6.2 t at yield / ~15 t ultimate - adequate for a 2.5-3 t vehicle recovery point PROVIDED the load path is welded through to the chassis bracket (full-penetration fillet both sides, 8 mm leg). The 3 mm end panel alone must not carry it. For a certified rating, test to 2 x GVM."
+   ]
+  },
+  {
+   "item": "Side hoop VA-BB-15/16 (CHS 50 x 2.0, 285 mm above end panel)",
+   "lines": [
+    "I = 87010 mm4, Z = 3480 mm3",
+    "Lateral load at the top to reach yield at the root weld: 2.56 kN (262 kgf)",
+    "VERDICT: adequate for brush/animal contact and as a handhold; it is not a structural member. Root weld to the 3 mm end panel is the weak link - add a 3 mm doubler or weld through to the end plate."
+   ]
+  },
+  {
+   "item": "Centre section as a beam, 5 kN frontal push at mid-span, 700 mm between chassis brackets",
+   "lines": [
+    "I (sum of centre Z + P2 hat + P3 channel, no composite credit) = 726.5 cm4; Z ~ 161.4 cm3",
+    "M = 875 Nm -> sigma = 5 MPa vs 210 MPa yield -> OK  (margin 39x; conclusion holds even if the section is 10x less stiff than summed)"
+   ]
+  },
+  {
+   "item": "Centre section as a beam, 10 kN frontal push at mid-span, 700 mm between chassis brackets",
+   "lines": [
+    "I (sum of centre Z + P2 hat + P3 channel, no composite credit) = 726.5 cm4; Z ~ 161.4 cm3",
+    "M = 1750 Nm -> sigma = 11 MPa vs 210 MPa yield -> OK  (margin 19x; conclusion holds even if the section is 10x less stiff than summed)"
+   ]
+  },
+  {
+   "item": "Centre section as a beam, 20 kN frontal push at mid-span, 700 mm between chassis brackets",
+   "lines": [
+    "I (sum of centre Z + P2 hat + P3 channel, no composite credit) = 726.5 cm4; Z ~ 161.4 cm3",
+    "M = 3500 Nm -> sigma = 22 MPa vs 210 MPa yield -> OK  (margin 10x; conclusion holds even if the section is 10x less stiff than summed)"
+   ]
+  },
+  {
+   "item": "Chassis brackets VA-BB-06 (5 mm U, 4 slots each)",
+   "lines": [
+    "Slots are 13 x 20 in the web and 15 x 38 in the flange (from the DXF) - M12 clearance as drawn. Use M12 class 8.8 / A4-80 with flat washers; no slot change needed.",
+    "Bracket web 116 x 5 mm in bending under 10 kN at 80 mm lever: sigma ~ 10000 x 80 / (116 x 25 / 6) = 1655 MPa -> relies on the centre channels, NOT the bracket alone. Weld brackets to both P2 and P3 (notes on assembly sheet)."
+   ]
+  },
+  {
+   "item": "Assembly stack-up (from flats)",
+   "lines": [
+    "835 (centre) + 2 x 5 (uprights) + 448.28 + 447.81 (ends) = 1741.09 = overall width on sheet 1. Fit is exact.",
+    "P2 hat (238.64 formed) / P3 channel (83 formed) / centre Z (80.34 deep) all 835 long - they stack as one box; no interference.",
+    "Side hoop end: 204 mm inboard leg lands inside the upright window (window 108 x 141) - clearance 50 mm tube in 108 window OK."
+   ]
+  }
+ ],
+ "nest": [
+  {
+   "t": 2.0,
+   "sheets": 1,
+   "util": 2.1732287053713115,
+   "parts": 4
+  },
+  {
+   "t": 3.0,
+   "sheets": 1,
+   "util": 35.36227093169851,
+   "parts": 7
+  },
+  {
+   "t": 5.0,
+   "sheets": 1,
+   "util": 10.45325630451958,
+   "parts": 4
+  },
+  {
+   "t": 12.0,
+   "sheets": 1,
+   "util": 0.6757313817851176,
+   "parts": 4
+  }
+ ]
+}

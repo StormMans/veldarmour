@@ -1,0 +1,463 @@
+[
+ {
+  "no": "VA-BB-01",
+  "name": "Centre panel",
+  "t": 3.0,
+  "qty": 1,
+  "item": 1,
+  "W": 835.0,
+  "H": 209.0157183837,
+  "area": 170262.65253976436,
+  "mass": 4.050548503920994,
+  "dxf": "VA-BB-01_Centre_panel_3mm.dxf",
+  "bends": [
+   {
+    "seq": 1,
+    "dir": "UP",
+    "angle": 90.0,
+    "r_in": 2.5
+   },
+   {
+    "seq": 2,
+    "dir": "DOWN",
+    "angle": 54.76,
+    "r_in": 2.5
+   },
+   {
+    "seq": 3,
+    "dir": "UP",
+    "angle": 54.76,
+    "r_in": 2.5
+   }
+  ]
+ },
+ {
+  "no": "VA-BB-02",
+  "name": "End panel (item 2)",
+  "t": 3.0,
+  "qty": 1,
+  "item": 2,
+  "W": 688.3493301716,
+  "H": 686.9283217859,
+  "area": 265538.4804738351,
+  "mass": 6.317160450472537,
+  "dxf": "VA-BB-02_End_panel_3mm.dxf",
+  "bends": [
+   {
+    "seq": 1,
+    "dir": "DOWN",
+    "angle": 90.0,
+    "r_in": 2.5
+   },
+   {
+    "seq": 2,
+    "dir": "DOWN",
+    "angle": 48.0,
+    "r_in": 2.5
+   },
+   {
+    "seq": 3,
+    "dir": "UP",
+    "angle": 45.0,
+    "r_in": 2.5
+   },
+   {
+    "seq": 4,
+    "dir": "DOWN",
+    "angle": 90.0,
+    "r_in": 2.5
+   },
+   {
+    "seq": 5,
+    "dir": "DOWN",
+    "angle": 90.0,
+    "r_in": 2.5
+   },
+   {
+    "seq": 6,
+    "dir": "DOWN",
+    "angle": 90.0,
+    "r_in": 2.5
+   }
+  ]
+ },
+ {
+  "no": "VA-BB-03",
+  "name": "Upright RH",
+  "t": 5.0,
+  "qty": 1,
+  "item": 3,
+  "W": 306.46838866,
+  "H": 768.8903941851312,
+  "area": 117495.51515315108,
+  "mass": 4.65869717582244,
+  "dxf": "VA-BB-03_Upright_RH_5mm.dxf",
+  "bends": [
+   {
+    "seq": 1,
+    "dir": "DOWN",
+    "angle": 20.0,
+    "r_in": 3.0
+   },
+   {
+    "seq": 2,
+    "dir": "UP",
+    "angle": 20.0,
+    "r_in": 3.0
+   }
+  ]
+ },
+ {
+  "no": "VA-BB-04",
+  "name": "End panel, opposite hand (item 4)",
+  "t": 3.0,
+  "qty": 1,
+  "item": 4,
+  "W": 688.3493301716,
+  "H": 686.9283217859,
+  "area": 265538.48047384276,
+  "mass": 6.31716045047272,
+  "dxf": "VA-BB-04_End_panel,_opposite_hand_3mm.dxf",
+  "bends": [
+   {
+    "seq": 1,
+    "dir": "DOWN",
+    "angle": 90.0,
+    "r_in": 2.5
+   },
+   {
+    "seq": 2,
+    "dir": "DOWN",
+    "angle": 48.0,
+    "r_in": 2.5
+   },
+   {
+    "seq": 3,
+    "dir": "UP",
+    "angle": 45.0,
+    "r_in": 2.5
+   },
+   {
+    "seq": 4,
+    "dir": "DOWN",
+    "angle": 90.0,
+    "r_in": 2.5
+   },
+   {
+    "seq": 5,
+    "dir": "DOWN",
+    "angle": 90.0,
+    "r_in": 2.5
+   },
+   {
+    "seq": 6,
+    "dir": "DOWN",
+    "angle": 90.0,
+    "r_in": 2.5
+   }
+  ]
+ },
+ {
+  "no": "VA-BB-05",
+  "name": "End plate",
+  "t": 3.0,
+  "qty": 2,
+  "item": 5,
+  "W": 268.79285411,
+  "H": 78.0,
+  "area": 20965.84262058,
+  "mass": 0.4987773959435982,
+  "dxf": "VA-BB-05_End_plate_3mm.dxf",
+  "bends": [
+   {
+    "seq": 1,
+    "dir": "UP",
+    "angle": 40.84,
+    "r_in": 1.5
+   }
+  ]
+ },
+ {
+  "no": "VA-BB-06",
+  "name": "Bracket 1 (chassis bracket)",
+  "t": 5.0,
+  "qty": 2,
+  "item": 6,
+  "W": 183.6330744109,
+  "H": 257.707963268,
+  "area": 45836.6146049674,
+  "mass": 1.8174217690869576,
+  "dxf": "VA-BB-06_Bracket_1_5mm.dxf",
+  "bends": [
+   {
+    "seq": 1,
+    "dir": "DOWN",
+    "angle": 90.0,
+    "r_in": 3.0
+   },
+   {
+    "seq": 2,
+    "dir": "DOWN",
+    "angle": 90.0,
+    "r_in": 3.0
+   }
+  ]
+ },
+ {
+  "no": "VA-BB-07",
+  "name": "Recovery lug",
+  "t": 12.0,
+  "qty": 4,
+  "item": 7,
+  "W": 95.58902984991101,
+  "H": 96.69197318187864,
+  "area": 5279.151420196231,
+  "mass": 0.5023640491458734,
+  "dxf": "VA-BB-07_Recovery_lug_12mm.dxf",
+  "bends": []
+ },
+ {
+  "no": "VA-BB-11",
+  "name": "Spot bracket (light mount)",
+  "t": 2.0,
+  "qty": 2,
+  "item": 11,
+  "W": 60.0,
+  "H": 89.316,
+  "area": 3577.7371580664444,
+  "mass": 0.05674291132693381,
+  "dxf": "VA-BB-11_Spot_bracket_2mm.dxf",
+  "bends": [
+   {
+    "seq": 1,
+    "dir": "DOWN",
+    "angle": 50.0,
+    "r_in": 1.25
+   },
+   {
+    "seq": 2,
+    "dir": "DOWN",
+    "angle": 50.0,
+    "r_in": 1.25
+   }
+  ]
+ },
+ {
+  "no": "VA-BB-12",
+  "name": "Centre panel P2 (top plate)",
+  "t": 3.0,
+  "qty": 1,
+  "item": 12,
+  "W": 835.0,
+  "H": 288.6930964915,
+  "area": 241058.7355704025,
+  "mass": 5.734787319219876,
+  "dxf": "VA-BB-12_Centre_panel_P2_3mm.dxf",
+  "bends": [
+   {
+    "seq": 1,
+    "dir": "UP",
+    "angle": 90.0,
+    "r_in": 2.0
+   },
+   {
+    "seq": 2,
+    "dir": "UP",
+    "angle": 90.0,
+    "r_in": 2.0
+   }
+  ]
+ },
+ {
+  "no": "VA-BB-13",
+  "name": "Centre panel P3 (lower channel)",
+  "t": 3.0,
+  "qty": 1,
+  "item": 13,
+  "W": 835.0,
+  "H": 153.0008839368,
+  "area": 120740.93231657405,
+  "mass": 2.872426779811297,
+  "dxf": "VA-BB-13_Centre_panel_P3_3mm.dxf",
+  "bends": [
+   {
+    "seq": 1,
+    "dir": "UP",
+    "angle": 90.0,
+    "r_in": 2.5
+   },
+   {
+    "seq": 2,
+    "dir": "UP",
+    "angle": 90.0,
+    "r_in": 2.5
+   }
+  ]
+ },
+ {
+  "no": "VA-BB-14",
+  "name": "Upright LH",
+  "t": 5.0,
+  "qty": 1,
+  "item": 14,
+  "W": 306.46838866,
+  "H": 768.8903941851312,
+  "area": 117495.515153151,
+  "mass": 4.658697175822438,
+  "dxf": "VA-BB-14_Upright_LH_5mm.dxf",
+  "bends": [
+   {
+    "seq": 1,
+    "dir": "DOWN",
+    "angle": 20.0,
+    "r_in": 3.0
+   },
+   {
+    "seq": 2,
+    "dir": "UP",
+    "angle": 20.0,
+    "r_in": 3.0
+   }
+  ]
+ },
+ {
+  "no": "VA-BB-17",
+  "name": "Face 1 (RH trim strip)",
+  "t": 2.0,
+  "qty": 1,
+  "item": 17,
+  "W": 860.3960178211,
+  "H": 87.2022448987,
+  "area": 30379.047469368106,
+  "mass": 0.4818116928641782,
+  "dxf": "VA-BB-17_Face_1_2mm.dxf",
+  "bends": [
+   {
+    "seq": 1,
+    "dir": "DOWN",
+    "angle": 90.0,
+    "r_in": 1.25
+   },
+   {
+    "seq": 2,
+    "dir": "DOWN",
+    "angle": 17.0,
+    "r_in": 1.25
+   },
+   {
+    "seq": 3,
+    "dir": "DOWN",
+    "angle": 162.0,
+    "r_in": 42.0
+   }
+  ]
+ },
+ {
+  "no": "VA-BB-18",
+  "name": "Face 1 LH (trim strip)",
+  "t": 2.0,
+  "qty": 1,
+  "item": 18,
+  "W": 860.3960178211,
+  "H": 87.2022448987,
+  "area": 30378.875257352483,
+  "mass": 0.4818089615816104,
+  "dxf": "VA-BB-18_Face_1_LH_2mm.dxf",
+  "bends": [
+   {
+    "seq": 1,
+    "dir": "DOWN",
+    "angle": 90.0,
+    "r_in": 1.25
+   },
+   {
+    "seq": 2,
+    "dir": "DOWN",
+    "angle": 17.0,
+    "r_in": 1.25
+   },
+   {
+    "seq": 3,
+    "dir": "DOWN",
+    "angle": 162.0,
+    "r_in": 42.0
+   }
+  ]
+ },
+ {
+  "no": "VA-BB-08",
+  "name": "Pipe lift (jacking stub)",
+  "qty": 2,
+  "item": 8,
+  "od": 38.1,
+  "wall": 2.0,
+  "cut": 100.0,
+  "bends": [],
+  "spec": "CHS 38.1 x 2.0",
+  "conf": "approx."
+ },
+ {
+  "no": "VA-BB-09",
+  "name": "Pipe centre (top hoop)",
+  "qty": 1,
+  "item": 9,
+  "od": 63.5,
+  "wall": 2.0,
+  "cut": 702.0,
+  "bends": [],
+  "spec": "CHS 63.5 x 2.0",
+  "conf": "measured"
+ },
+ {
+  "no": "VA-BB-10",
+  "name": "Pipe spot (light bar)",
+  "qty": 1,
+  "item": 10,
+  "od": 38.1,
+  "wall": 2.0,
+  "cut": 805.0,
+  "bends": [],
+  "spec": "CHS 38.1 x 2.0",
+  "conf": "measured"
+ },
+ {
+  "no": "VA-BB-15",
+  "name": "Tube 50 LH (side hoop)",
+  "qty": 1,
+  "item": 15,
+  "od": 50.0,
+  "wall": 2.0,
+  "cut": 510.0,
+  "bends": [
+   {
+    "angle": 90,
+    "clr": 80,
+    "legA": 180,
+    "legB": 204,
+    "plane": 25
+   }
+  ],
+  "spec": "CHS 50 x 2.0",
+  "conf": "measured"
+ },
+ {
+  "no": "VA-BB-16",
+  "name": "Tube 50 RH (side hoop)",
+  "qty": 1,
+  "item": 16,
+  "od": 50.0,
+  "wall": 2.0,
+  "cut": 510.0,
+  "bends": [
+   {
+    "angle": 90,
+    "clr": 80,
+    "legA": 180,
+    "legB": 204,
+    "plane": 25
+   }
+  ],
+  "spec": "CHS 50 x 2.0",
+  "conf": "measured"
+ }
+]
