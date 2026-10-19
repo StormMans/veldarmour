@@ -12,6 +12,8 @@ sheet. The combined PDF is the shop-floor document.
 | `dxf/` | One DXF per plate part, mm, closed LWPOLYLINE profiles, origin at bottom-left of the flat |
 | `pdf/` | The same sheets as individual PDFs |
 | `parts_index.json` | Machine-readable part list: size, mass, bend table |
+| `VA-BB_Simulation_Report.pdf` | Virtual build: 3D fold of every flat (self-clash + formed dims vs drawing), stack-up, press-brake tonnage / min-flange, structural hand checks, nesting |
+| `simulation/` | Folded-part renders and `simulation_results.json` |
 | `source/` | The original flat patterns and assembly drawing the pack was derived from (unmodified) |
 | `tools/` | Python build scripts (`build.py`, `vageom.py`) – regenerate everything from `source/` |
 
@@ -79,9 +81,18 @@ spec). Verify on the jig before cutting a batch.
 5. The source Upright and Spot-bracket flats contained duplicated zero-width relief geometry from
    the SolidWorks export; it has been removed and the outlines rebuilt as single closed contours.
 
+## Simulation findings (see `VA-BB_Simulation_Report.pdf`)
+
+- All 13 flats fold without self-clash; formed sections agree with the source drawing within 1 mm.
+- Stack-up 835 + 2 x 5 + 448.28 + 447.81 = 1741.09, exact.
+- Press brake: centre-panel 15 mm lip is too short for an 8T (24 mm) V-die - use V = 18. Peak tonnage 22 t on the 835 mm bends (29 t at V = 18).
+- Structure: centre section has a 10x+ margin for a 10 kN frontal push; side hoops are handhold grade; the 8 mm lug is a tie-down, not a rated recovery point as drawn; bracket slots suit M8 - upsize to M12 for a 3 t vehicle.
+- Nesting: one 2500 x 1250 sheet per thickness.
+
 ## Rebuild
 
 ```
 pip install ezdxf matplotlib shapely
 python3 tools/build.py      # paths at the top of the script point at scratch/source dirs
+python3 tools/sim.py        # virtual build / simulation report
 ```
