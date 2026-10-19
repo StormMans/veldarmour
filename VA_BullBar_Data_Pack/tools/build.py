@@ -63,10 +63,10 @@ PARTS = [
          bends=[('auto', 'DOWN', 90.0, 3.0), ('auto', 'DOWN', 90.0, 3.0)],
          ref=(7, (130, 80, 530, 500)),
          notes=['U-channel: bend both legs in the same direction. Check slot alignment to chassis rail after forming.']),
-    dict(no='VA-BB-07', name='Recovery lug', src=None, t=8.0, qty=4, item=7,
+    dict(no='VA-BB-07', name='Recovery lug', src=None, t=12.0, qty=4, item=7,
          bends=[], ref=(8, (170, 110, 480, 450)), lug=True,
-         notes=['Redrawn from assembly drawing sheet 8 (no flat supplied in source). Dia 30 hole, R30 boss.',
-                'Laser or plasma cut 8 mm; dress the hole for a 30 mm pin / shackle bow.']),
+         notes=['Redrawn from assembly drawing sheet 8 (no flat supplied in source). Dia 30 hole, R30 boss. Upgraded from 8 mm to 12 mm (Rev A).',
+                'Laser cut 12 mm with nitrogen; dress the hole for a 30 mm pin / shackle bow. Weld through to the chassis bracket, not only to the 3 mm end panel.']),
     dict(no='VA-BB-11', name='Spot bracket (light mount)', src='e3a78948-Flat_pattern_-_SPOT_BRKT.DXF', t=2.0, qty=2, item=11,
          bends=[('auto', 'DOWN', 50.0, 1.25), ('auto', 'DOWN', 50.0, 1.25)],
          ref=(10, (230, 60, 430, 340)), ref2=(10, (1220, 200, 1450, 560)), fix='spot',
@@ -565,7 +565,7 @@ def assembly_sheet(pdf, results, idx, total):
     tube_mass = sum(math.pi * (t['od'] ** 2 - (t['od'] - 2 * t['wall']) ** 2) / 4 * t['cut'] * DENSITY * t['qty'] for t in TUBES)
     fields = [('Material', '304 SS 2B'), ('Sheet parts', str(sum(r['qty'] for r in results))), ('Plate / tube mass', f'{sheet_mass:.1f} / {tube_mass:.1f} kg'),
               ('Overall width', '1741 mm'), ('Centre section', '835 mm'), ('End sections', '448 mm each'),
-              ('Thicknesses', '2 / 3 / 5 / 8 mm'), ('Fitment', 'TBC (per source 4x4 design)'), ('Tube', 'CHS 50 / 63.5 / 38.1'),
+              ('Thicknesses', '2 / 3 / 5 / 12 mm'), ('Fitment', 'TBC (per source 4x4 design)'), ('Tube', 'CHS 50 / 63.5 / 38.1'),
               ('Welding', 'TIG/MIG, ER308L, purge'), ('Finish', 'Brushed, passivated'), ('Pack', f'{PRODUCT} rev {REV}')]
     bx = frame_and_titleblock(fig, PRODUCT + '-ASM', 'BULL BAR  -  ASSEMBLY, BOM & CUT LIST', fields, f'{idx} of {total}', '1:20')
     # assembly images
@@ -615,7 +615,7 @@ def assembly_sheet(pdf, results, idx, total):
     for n in ['1. Laser cut all plate 1:1 from DXF (layer CUT). Layers BEND_UP / BEND_DOWN are bend-line centres - do not cut.',
               '2. Layer ETCH = low-power surface mark (wordmark on centre panel). Layer INFO = reference text only.',
               '3. Flats are developed at K = 0.46 (air bend, 304). 304 springs back 2-3 deg more than mild steel - over-bend and check first-off against the bend table.',
-              '4. Laser cut with nitrogen (oxide-free edge). Deburr; break sharp corners 0.5 mm. Stainless-only tooling, films and brushes - no carbon-steel contamination.',
+              '4. Laser cut with nitrogen (oxide-free edge). Deburr; break sharp corners 0.5 mm. Stainless-only tooling, films and brushes - no carbon-steel contamination. 12 mm lugs: plasma or 6 kW+ fibre laser.',
               '5. Bend direction is viewed from the flat-pattern face shown on each sheet (UP = flange toward viewer).',
               '6. Tube items 8/9/10/15/16: cut lengths and bend data on the TUBE SCHEDULE sheet, measured from the 1:20 assembly views. Wall 2.0 mm on all tubes.',
               '7. Items 17/18 (face strips): bend as drawn (the source "NO BENDING" note is superseded). The R42 wrap matches the upright top radius.',

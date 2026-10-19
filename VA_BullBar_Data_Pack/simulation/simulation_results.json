@@ -623,13 +623,13 @@
  ],
  "struct": [
   {
-   "item": "Recovery lug VA-BB-07 (8 mm 304, dia 30, R30 boss)",
+   "item": "Recovery lug VA-BB-07 (12 mm 304, dia 30, R30 boss)",
    "lines": [
-    "Net tension at hole: 2 x 15 x 8 x 210 MPa = 50 kN (5.1 t) at yield",
-    "Shear tear-out (2 planes x 15 mm): 30 kN (3.1 t) at yield",
-    "Pin bearing (dia 30 x 8, 1.5 Fy): 76 kN (7.7 t)",
-    "Governing: tear-out 30 kN (3.1 t) at yield, ~75 kN (7.6 t) ultimate per lug - before the weld to the 3 mm end panel is considered.",
-    "VERDICT: fine as a tie-down / mounting lug. NOT a rated snatch-recovery point for a 2.5-3 t vehicle (want >= 2 x GVM with a safety factor, and the load path welded through to the chassis bracket): go to 10-12 mm, R35 boss, and weld to the bracket, or label it tie-down only."
+    "Net tension at hole: 2 x 15 x 12 x 210 MPa = 76 kN (7.7 t) at yield",
+    "Shear tear-out (2 planes x 15 mm): 45 kN (4.6 t) at yield",
+    "Pin bearing (dia 30 x 12, 1.5 Fy): 113 kN (11.6 t)",
+    "Governing: tear-out 45 kN (4.6 t) at yield, ~112 kN (11.4 t) ultimate per lug - before the weld to the 3 mm end panel is considered.",
+    "VERDICT: at 12 mm the lug itself carries ~4.6 t at yield / ~11 t ultimate - adequate for a 2.5-3 t vehicle recovery point PROVIDED the load path is welded through to the chassis bracket (full-penetration fillet both sides, 8 mm leg). The 3 mm end panel alone must not carry it. For a certified rating, test to 2 x GVM."
    ]
   },
   {
@@ -664,7 +664,7 @@
   {
    "item": "Chassis brackets VA-BB-06 (5 mm U, 4 slots each)",
    "lines": [
-    "Slot 22 x 9 (source) suits M8. For a bull bar on a 3 t vehicle use M12 8.8 minimum: open slots to 13 wide / 26 long on the next revision.",
+    "Slots are 13 x 20 in the web and 15 x 38 in the flange (from the DXF) - M12 clearance as drawn. Use M12 class 8.8 / A4-80 with flat washers; no slot change needed.",
     "Bracket web 116 x 5 mm in bending under 10 kN at 80 mm lever: sigma ~ 10000 x 80 / (116 x 25 / 6) = 1655 MPa -> relies on the centre channels, NOT the bracket alone. Weld brackets to both P2 and P3 (notes on assembly sheet)."
    ]
   },
@@ -697,7 +697,7 @@
    "parts": 4
   },
   {
-   "t": 8.0,
+   "t": 12.0,
    "sheets": 1,
    "util": 0.594506094611007,
    "parts": 4

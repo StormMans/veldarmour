@@ -206,14 +206,14 @@
  {
   "no": "VA-BB-07",
   "name": "Recovery lug",
-  "t": 8.0,
+  "t": 12.0,
   "qty": 4,
   "item": 7,
   "W": 90.59500364892324,
   "H": 91.69087710070373,
   "area": 4644.578864148492,
-  "mass": 0.29465208314158037,
-  "dxf": "VA-BB-07_Recovery_lug_8mm.dxf",
+  "mass": 0.4419781247123705,
+  "dxf": "VA-BB-07_Recovery_lug_12mm.dxf",
   "bends": []
  },
  {
