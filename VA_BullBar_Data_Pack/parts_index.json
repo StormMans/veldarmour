@@ -383,5 +383,81 @@
     "r_in": 42.0
    }
   ]
+ },
+ {
+  "no": "VA-BB-08",
+  "name": "Pipe lift (jacking stub)",
+  "qty": 2,
+  "item": 8,
+  "od": 38.1,
+  "wall": 3.0,
+  "cut": 100.0,
+  "bends": [],
+  "spec": "CHS 38.1 x 3.0",
+  "conf": "approx."
+ },
+ {
+  "no": "VA-BB-09",
+  "name": "Pipe centre (top hoop)",
+  "qty": 1,
+  "item": 9,
+  "od": 63.5,
+  "wall": 2.0,
+  "cut": 702.0,
+  "bends": [],
+  "spec": "CHS 63.5 x 2.0",
+  "conf": "measured"
+ },
+ {
+  "no": "VA-BB-10",
+  "name": "Pipe spot (light bar)",
+  "qty": 1,
+  "item": 10,
+  "od": 38.1,
+  "wall": 2.0,
+  "cut": 805.0,
+  "bends": [],
+  "spec": "CHS 38.1 x 2.0",
+  "conf": "measured"
+ },
+ {
+  "no": "VA-BB-15",
+  "name": "Tube 50 LH (side hoop)",
+  "qty": 1,
+  "item": 15,
+  "od": 50.0,
+  "wall": 2.0,
+  "cut": 510.0,
+  "bends": [
+   {
+    "angle": 90,
+    "clr": 80,
+    "legA": 180,
+    "legB": 204,
+    "plane": 25
+   }
+  ],
+  "spec": "CHS 50 x 2.0",
+  "conf": "measured"
+ },
+ {
+  "no": "VA-BB-16",
+  "name": "Tube 50 RH (side hoop)",
+  "qty": 1,
+  "item": 16,
+  "od": 50.0,
+  "wall": 2.0,
+  "cut": 510.0,
+  "bends": [
+   {
+    "angle": 90,
+    "clr": 80,
+    "legA": 180,
+    "legB": 204,
+    "plane": 25
+   }
+  ],
+  "spec": "CHS 50 x 2.0",
+  "conf": "measured"
  }
 ]

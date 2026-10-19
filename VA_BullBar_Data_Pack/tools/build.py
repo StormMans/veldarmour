@@ -86,20 +86,32 @@ PARTS = [
     dict(no='VA-BB-17', name='Face 1 (RH trim strip)', src='e31a439c-Flat_pattern_-_face_1.DXF', t=2.0, qty=1, item=17,
          bends=[('auto', 'DOWN', 90.0, 1.25), ('auto', 'DOWN', 17.0, 1.25), ('auto', 'DOWN', 162.0, 42.0)], rot=3,
          ref=(9, (380, 330, 580, 1050)),
-         notes=['SOURCE DRAWING CARRIES THE NOTE "NO BENDING" ON THIS PART while also showing three bend callouts.',
-                'Bend lines are supplied as drawn. CONFIRM WITH DESIGN before forming. R42 bend = roll/bump form.']),
+         notes=['Bends confirmed by Veld Armour (source sheet 9 note "NO BENDING" is superseded).',
+                'B3 (162 deg, R42) wraps the R42 top radius of the upright - roll/bump-form it, then fit the strip over the upright edge; B1/B2 on the brake.']),
     dict(no='VA-BB-18', name='Face 1 LH (trim strip)', src='e31a439c-Flat_pattern_-_face_1.DXF', t=2.0, qty=1, item=18,
          bends=[('auto', 'DOWN', 90.0, 1.25), ('auto', 'DOWN', 17.0, 1.25), ('auto', 'DOWN', 162.0, 42.0)], rot=3, mirror=True,
          ref=(9, (380, 330, 580, 1050)),
-         notes=['Mirror of VA-BB-17 (generated). Same "NO BENDING" caveat applies - confirm before forming.']),
+         notes=['Mirror of VA-BB-17 (generated). Same forming method as VA-BB-17.']),
 ]
 
+# Tube schedule - measured from the 1:20 assembly drawing (front and side views, sheet 1).
+# Scale derived from the 1741.09 overall dimension (7.0573 mm per drawing pt).
 TUBES = [
-    dict(no='VA-BB-08', name='Pipe lift (tube loop)', qty=2, item=8),
-    dict(no='VA-BB-09', name='Pipe centre (tube hoop)', qty=1, item=9),
-    dict(no='VA-BB-10', name='Pipe spot (light bar tube)', qty=1, item=10),
-    dict(no='VA-BB-15', name='Tube 50 LH', qty=1, item=15),
-    dict(no='VA-BB-16', name='Tube 50 RH', qty=1, item=16),
+    dict(no='VA-BB-08', name='Pipe lift (jacking stub)', qty=2, item=8, od=38.1, wall=3.0, cut=100.0,
+         bends=[], spec='CHS 38.1 x 3.0', conf='approx.',
+         how='Seen end-on under the centre section in the front view (Ø38 outer / Ø32 inner at 705 mm centres); length from side view.'),
+    dict(no='VA-BB-09', name='Pipe centre (top hoop)', qty=1, item=9, od=63.5, wall=2.0, cut=702.0,
+         bends=[], spec='CHS 63.5 x 2.0', conf='measured',
+         how='Straight tube between the upright faces at the top (front view 5529.4 to 6231.4); Ø63 end-on in side view.'),
+    dict(no='VA-BB-10', name='Pipe spot (light bar)', qty=1, item=10, od=38.1, wall=2.0, cut=805.0,
+         bends=[], spec='CHS 38.1 x 2.0', conf='measured',
+         how='Straight tube between the upright feet (front view 5477.9 to 6282.9), 38.1 wide in front view.'),
+    dict(no='VA-BB-15', name='Tube 50 LH (side hoop)', qty=1, item=15, od=50.0, wall=2.0, cut=510.0,
+         bends=[dict(angle=90, clr=80, legA=180, legB=204, plane=25)], spec='CHS 50 x 2.0', conf='measured',
+         how='Vertical leg 180 from end-panel top to tangent; 90 deg bend, CLR 80 (105 outer / 55 inner); inboard leg 204 to end, running 25 deg rearward of lateral into the upright window.'),
+    dict(no='VA-BB-16', name='Tube 50 RH (side hoop)', qty=1, item=16, od=50.0, wall=2.0, cut=510.0,
+         bends=[dict(angle=90, clr=80, legA=180, legB=204, plane=25)], spec='CHS 50 x 2.0', conf='measured',
+         how='Mirror of VA-BB-15.'),
 ]
 
 
@@ -550,9 +562,10 @@ def part_sheet(pdf, R, idx, total):
 def assembly_sheet(pdf, results, idx, total):
     fig = plt.figure(figsize=(A3[0] / 25.4, A3[1] / 25.4))
     sheet_mass = sum(r['mass'] * r['qty'] for r in results)
-    fields = [('Material', '304 SS 2B'), ('Sheet parts', str(sum(r['qty'] for r in results))), ('Plate mass', f'{sheet_mass:.1f} kg (excl. tube)'),
+    tube_mass = sum(math.pi * (t['od'] ** 2 - (t['od'] - 2 * t['wall']) ** 2) / 4 * t['cut'] * DENSITY * t['qty'] for t in TUBES)
+    fields = [('Material', '304 SS 2B'), ('Sheet parts', str(sum(r['qty'] for r in results))), ('Plate / tube mass', f'{sheet_mass:.1f} / {tube_mass:.1f} kg'),
               ('Overall width', '1741 mm'), ('Centre section', '835 mm'), ('End sections', '448 mm each'),
-              ('Thicknesses', '2 / 3 / 5 / 8 mm'), ('Fitment', 'TBC (per source 4x4 design)'), ('Tube', '50 mm dia (per BOM)'),
+              ('Thicknesses', '2 / 3 / 5 / 8 mm'), ('Fitment', 'TBC (per source 4x4 design)'), ('Tube', 'CHS 50 / 63.5 / 38.1'),
               ('Welding', 'TIG/MIG, ER308L, purge'), ('Finish', 'Brushed, passivated'), ('Pack', f'{PRODUCT} rev {REV}')]
     bx = frame_and_titleblock(fig, PRODUCT + '-ASM', 'BULL BAR  -  ASSEMBLY, BOM & CUT LIST', fields, f'{idx} of {total}', '1:20')
     # assembly images
@@ -576,7 +589,8 @@ def assembly_sheet(pdf, results, idx, total):
     for r in results:
         rows.append((r['item'], r['no'], r['name'], f"{r['t']:g}", r['qty'], f"{r['W']:.0f} x {r['H']:.0f}", f"{r['mass']:.2f}"))
     for tbe in TUBES:
-        rows.append((tbe['item'], tbe['no'], tbe['name'], 'tube', tbe['qty'], 'TBC from model', '-'))
+        L = tbe['cut']; m = math.pi * (tbe['od'] ** 2 - (tbe['od'] - 2 * tbe['wall']) ** 2) / 4 * L * DENSITY
+        rows.append((tbe['item'], tbe['no'], tbe['name'], tbe['spec'].replace('CHS ', ''), tbe['qty'], f"L = {L:.0f}" + (' (bent)' if tbe['bends'] else ''), f'{m:.2f}'))
     rows.sort(key=lambda q: q[0])
     y = 206
     for row in rows:
@@ -603,13 +617,87 @@ def assembly_sheet(pdf, results, idx, total):
               '3. Flats are developed at K = 0.46 (air bend, 304). 304 springs back 2-3 deg more than mild steel - over-bend and check first-off against the bend table.',
               '4. Laser cut with nitrogen (oxide-free edge). Deburr; break sharp corners 0.5 mm. Stainless-only tooling, films and brushes - no carbon-steel contamination.',
               '5. Bend direction is viewed from the flat-pattern face shown on each sheet (UP = flange toward viewer).',
-              '6. Tube items 8/9/10/15/16 are not in this plate pack - lengths and bend data to come from the 3D model.',
-              '7. Items 17/18 (face strips): source drawing states "NO BENDING" yet carries bend notes - confirm with design before forming.',
+              '6. Tube items 8/9/10/15/16: cut lengths and bend data on the TUBE SCHEDULE sheet, measured from the 1:20 assembly views. Wall thicknesses are assumed - confirm stock.',
+              '7. Items 17/18 (face strips): bend as drawn (the source "NO BENDING" note is superseded). The R42 wrap matches the upright top radius.',
               '8. Weld sequence: tack brackets (06) to centre (01) and P2/P3 (12/13); fit uprights (03/14) and lugs (07); add ends (02/04) and end plates (05) last.',
               '9. Several source bend radii are below 1T (red warnings on sheets 05, 06, 11, 03/14, 17/18). Workable in 304 with a sharp-nose punch; confirm on first-off - if it cracks, open the radius.']:
         tx.text(1.5, y, n, fontsize=5.3, va='center'); y -= 4.6
     pdf.savefig(fig); fig.savefig(f'{PDF_DIR}/{PRODUCT}-ASM_assembly_sheet.pdf'); plt.close(fig)
 
+
+
+def tube_sheet(pdf, idx, total):
+    fig = plt.figure(figsize=(A3[0] / 25.4, A3[1] / 25.4))
+    tube_mass = sum(math.pi * (t['od'] ** 2 - (t['od'] - 2 * t['wall']) ** 2) / 4 * t['cut'] * DENSITY * t['qty'] for t in TUBES)
+    fields = [('Material', '304 SS CHS'), ('Tube items', str(sum(t['qty'] for t in TUBES))), ('Tube mass', f'{tube_mass:.1f} kg'),
+              ('Hoop CLR', '80 mm (1.6 D)'), ('Bend method', 'Mandrel / rotary draw'), ('Source scale', '1:20, sheet 1'),
+              ('Wall', 'assumed - confirm stock'), ('Fitment', 'TBC'), ('End cuts', 'square unless noted'),
+              ('Tol. length', '+/- 1 mm'), ('Tol. angle', '+/- 1 deg'), ('Finish', 'Brushed, passivated')]
+    bx = frame_and_titleblock(fig, PRODUCT + '-TUBE', 'TUBE SCHEDULE  -  CUT LENGTHS & BEND DATA', fields, f'{idx} of {total}', '1:5')
+    # ---- hoop drawing (true view in bend plane)
+    ax = mm_axes(fig, 14, 132, 200, 132)
+    legA, legB, clr, od, ang = 180.0, 204.0, 80.0, 50.0, 90.0
+    # centreline: start at bottom of vertical leg (0,0) going up, bend to the right
+    pts = [(0, 0), (0, legA)]
+    n = 24
+    for i in range(1, n + 1):
+        a = math.radians(ang) * i / n
+        pts.append((clr - clr * math.cos(a), legA + clr * math.sin(a)))
+    ex, ey = pts[-1]
+    pts.append((ex + legB, ey))
+    poly = LineString(pts).buffer(od / 2, cap_style=2, join_style=1)
+    s = fit_axes(ax, -70, -45, ex + legB + 60, legA + clr + 45, pad=0.05)
+    ax.add_patch(MplPolygon(list(poly.exterior.coords), fc='#e3e3e3', ec=INK, lw=0.8))
+    xs, ys = zip(*pts); ax.plot(xs, ys, color='#c0392b', lw=0.5, ls='--')
+    # dims
+    dim_v(ax, 0, legA, -od / 2 - 14 * s, f'{legA:.0f}', s, right=False)
+    ext_line(ax, (-od / 2, 0), (-od / 2 - 16 * s, 0)); ext_line(ax, (-od / 2, legA), (-od / 2 - 16 * s, legA))
+    dim_h(ax, ex, ex + legB, ey + od / 2 + 12 * s, f'{legB:.0f}', s)
+    ext_line(ax, (ex, ey + od / 2), (ex, ey + od / 2 + 14 * s)); ext_line(ax, (ex + legB, ey + od / 2), (ex + legB, ey + od / 2 + 14 * s))
+    dim_h(ax, 0, ex + legB, -od / 2 - 12 * s, f'{ex + legB:.0f} overall', s, above=False)
+    ext_line(ax, (-od / 2, 0), (0, -od / 2 - 14 * s)); ext_line(ax, (ex + legB, ey - od / 2), (ex + legB, -od / 2 - 14 * s))
+    dim_v(ax, 0, ey + od / 2, ex + legB + 10 * s, f'{ey + od / 2:.0f} overall', s)
+    ax.plot([0, clr], [legA, legA], color='#888888', lw=0.4); ax.plot([clr, clr], [legA, legA + clr], color='#888888', lw=0.4)
+    ax.text(clr + 3 * s, legA + clr / 2, f'CLR {clr:.0f}\n90°', fontsize=6.5, color=INK, fontproperties=FONT)
+    ax.text(0.01, 0.99, 'VA-BB-15 / 16  SIDE HOOP  -  TRUE VIEW IN BEND PLANE   (CHS 50 x 2.0, CLR 80, 1 x 90° bend)', transform=ax.transAxes, fontsize=7, va='top', fontproperties=FONT, color=INK)
+    ax.text(0.01, 0.955, f'Cut length = {legA:.0f} + {legB:.0f} + (pi/2 x {clr:.0f}) = {legA + legB + math.pi / 2 * clr:.1f} mm  ->  cut 510 (allow +10 for notch trimming at the upright).  Bend plane is rotated 25° rearward of lateral: with the vertical leg plumb, the inboard leg points toward the upright window.  LH and RH are opposite hand.', transform=ax.transAxes, fontsize=5.6, va='top', color='#444444', wrap=True)
+    # ---- plan sketch of the bend-plane orientation
+    px = mm_axes(fig, 220, 180, 64, 95); px.set_xlim(-10, 100); px.set_ylim(-10, 100); px.set_aspect('equal')
+    px.add_patch(Rectangle((0, 0), 1, 1, transform=px.transAxes, fill=False, lw=0.6, ec=INK))
+    px.text(0.03, 0.96, 'PLAN (looking down)', transform=px.transAxes, fontsize=6.5, va='top', fontproperties=FONT)
+    px.annotate('', xy=(85, 0), xytext=(5, 0), arrowprops=dict(arrowstyle='-|>', lw=0.8, color='#888888')); px.text(60, 3, 'lateral (inboard)', fontsize=5.5, color='#888888')
+    px.annotate('', xy=(5, 85), xytext=(5, 5), arrowprops=dict(arrowstyle='-|>', lw=0.8, color='#888888')); px.text(7, 70, 'rearward', fontsize=5.5, color='#888888', rotation=90)
+    L = 75; px.plot([5, 5 + L * math.cos(math.radians(25))], [5, 5 + L * math.sin(math.radians(25))], color=INK, lw=3, solid_capstyle='round')
+    px.plot(5, 5, 'o', ms=6, color=INK); px.text(5, -6, 'vertical leg', fontsize=5.5, ha='center')
+    px.text(45, 30, '25°', fontsize=7, fontproperties=FONT)
+    px.text(0.03, 0.06, 'inboard leg direction\n(front view: 362 lateral, side view: 85 rearward)', transform=px.transAxes, fontsize=5, color='#444444')
+    # ---- table
+    rx, rw = 290, 122
+    tx = mm_axes(fig, rx, 120, rw, 155); tx.set_xlim(0, rw); tx.set_ylim(0, 155)
+    tx.add_patch(Rectangle((0, 0), rw, 155, fill=False, lw=0.6, ec=INK))
+    tx.add_patch(Rectangle((0, 149), rw, 6, fc=INK, ec='none'))
+    tx.text(2, 152, 'TUBE SCHEDULE', color=GOLD, fontsize=7.5, va='center', fontproperties=FONT)
+    y = 144
+    for t in TUBES:
+        m = math.pi * (t['od'] ** 2 - (t['od'] - 2 * t['wall']) ** 2) / 4 * t['cut'] * DENSITY
+        tx.text(2, y, f"{t['no']}   {t['name']}   x{t['qty']}", fontsize=6.5, va='center', fontproperties=FONT); y -= 4.6
+        tx.text(2, y, f"{t['spec']}   cut length {t['cut']:.0f} mm   {m:.2f} kg ea   [{t['conf']}]", fontsize=6, va='center'); y -= 4.2
+        for b in t['bends']:
+            tx.text(2, y, f"  bend {b['angle']}°, CLR {b['clr']}, legs {b['legA']} / {b['legB']} (tangent to end), bend plane {b['plane']}° rearward", fontsize=5.6, va='center'); y -= 4.2
+        tx.text(2, y, t['how'], fontsize=5, va='center', color='#444444', wrap=True); y -= 8.5
+        tx.plot([0, rw], [y + 3, y + 3], color='#bbbbbb', lw=0.4)
+    tx.text(2, 3, 'Measured from source assembly views at 1:20 (scale set from the 1741.09 dim). Wall thickness is not stated in the source - assumed. Verify first-off on the jig.', fontsize=5, va='bottom', color='#b00000')
+    # ---- source views
+    for i, (nm, lab) in enumerate([('front', 'SOURCE FRONT VIEW (measured)'), ('side', 'SOURCE SIDE VIEW (measured)')]):
+        im = imread(f'{S}/png/z_{nm}.png')
+        w = 190 if i == 0 else 90
+        x0 = 14 if i == 0 else 214
+        sub = fig.add_axes([x0 / A3[0], 52 / A3[1], w / A3[0], 62 / A3[1]]); sub.imshow(im); sub.set_axis_off()
+        sub.text(0, 1.02, lab, transform=sub.transAxes, fontsize=6.5, va='bottom', fontproperties=FONT)
+    nx = mm_axes(fig, 310, 52, 102, 62); nx.add_patch(Rectangle((0, 0), 1, 1, transform=nx.transAxes, fill=False, lw=0.6, ec=INK))
+    nx.text(0.03, 0.95, 'HOW THE LENGTHS WERE TAKEN', transform=nx.transAxes, fontsize=6.5, va='top', fontproperties=FONT)
+    nx.text(0.03, 0.85, 'Vector geometry extracted from the assembly PDF; the 1741.09 overall width fixes the scale. Hoop: vertical-leg tangent and horizontal-leg tangent found from the tube silhouettes in both views; CLR = 80 from the tangent offsets (72 lateral, 33 rearward, 80 vertical). Inboard leg true length from its two projections (184 lateral / 85 rearward). Centre and spot tubes span between the upright faces/feet. Lift stubs: Ø38/Ø32 circles under the bar, length from the side view.', transform=nx.transAxes, fontsize=5, va='top', color='#444444', wrap=True)
+    pdf.savefig(fig); fig.savefig(f'{PDF_DIR}/{PRODUCT}-TUBE_tube_schedule.pdf'); plt.close(fig)
 
 # ------------------------------------------------------------------ main
 if __name__ == '__main__':
@@ -619,12 +707,14 @@ if __name__ == '__main__':
         results.append(R)
         print(f"{R['no']} {R['name'][:30]:30s} {R['W']:7.1f} x {R['H']:7.1f}  area {R['area']:8.0f}  mass {R['mass']:.2f} kg  loops closed={R['nclosed']} open={R['nopen']}  bends={[(q['seq'],q['dir'],q['ang'],q['r']) for q in R['groups']]}")
     total = len(results) + 1
+    total += 1
     with PdfPages(f'{OUT}/{PRODUCT}_Bull_Bar_Bending_Pack.pdf') as pdf:
         assembly_sheet(pdf, results, 1, total)
+        tube_sheet(pdf, 2, total)
         for i, R in enumerate(results):
-            part_sheet(pdf, R, i + 2, total)
+            part_sheet(pdf, R, i + 3, total)
     with open(f'{OUT}/parts_index.json', 'w') as f:
         json.dump([{k: R[k] for k in ('no', 'name', 't', 'qty', 'item', 'W', 'H', 'area', 'mass', 'dxf')} |
                    {'bends': [{'seq': q['seq'], 'dir': q['dir'], 'angle': q['ang'], 'r_in': q['r']} for q in R['groups']]}
-                   for R in results], f, indent=1)
+                   for R in results] + [{k: t[k] for k in ('no', 'name', 'qty', 'item', 'od', 'wall', 'cut', 'bends', 'spec', 'conf')} for t in TUBES], f, indent=1)
     print('done')
