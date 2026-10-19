@@ -21,9 +21,9 @@ PDF_DIR = OUT + '/pdf'
 for d in (OUT, DXF_DIR, PDF_DIR):
     os.makedirs(d, exist_ok=True)
 
-K = 0.44
-DENSITY = 7.85e-6  # kg/mm3
-MATERIAL = 'S355JR mild steel'
+K = 0.46
+DENSITY = 7.93e-6  # kg/mm3 (304 stainless)
+MATERIAL = '304 stainless steel (1.4301), 2B'
 PRODUCT = 'VA-BB'
 REV = 'A'
 DATE = datetime.date.today().strftime('%Y-%m-%d')
@@ -418,10 +418,10 @@ def nice_scale(s):
 
 def part_sheet(pdf, R, idx, total):
     fig = plt.figure(figsize=(A3[0] / 25.4, A3[1] / 25.4))
-    fields = [('Material', MATERIAL.split(' ')[0]), ('Thickness', f"{R['t']:g} mm"), ('Qty / assy', str(R['qty'])),
-              ('Flat size', f"{R['W']:.1f} x {R['H']:.1f}"), ('Net mass', f"{R['mass']:.2f} kg"), ('K-factor', f'{K} (air bend)'),
+    fields = [('Material', '304 SS 2B'), ('Thickness', f"{R['t']:g} mm"), ('Qty / assy', str(R['qty'])),
+              ('Flat size', f"{R['W']:.1f} x {R['H']:.1f}"), ('Net mass', f"{R['mass']:.2f} kg"), ('K-factor', f'{K} (air bend, 304)'),
               ('Bends', str(len(R['groups']))), ('Source item', f"#{R['item']}"), ('DXF', R['dxf']),
-              ('Tol. linear', '+/- 0.5 mm'), ('Tol. angular', '+/- 1 deg'), ('Finish', 'Deburr; powder coat')]
+              ('Tol. linear', '+/- 0.5 mm'), ('Tol. angular', '+/- 1 deg'), ('Finish', 'Deburr; brush; passivate')]
     # main flat-pattern view
     main_w, main_h = 262, 215
     ax = mm_axes(fig, 14, 56, main_w, main_h)
@@ -484,7 +484,7 @@ def part_sheet(pdf, R, idx, total):
     for gr in R['groups']:
         ba = g.bend_allowance(gr['ang'], gr['r'], R['t'], K)
         bd = g.bend_deduction(gr['ang'], gr['r'], R['t'], K)
-        vdie = max(6 * R['t'], 8 * gr['r']) if gr['r'] < 10 else 0
+        vdie = max(8 * R['t'], 8 * gr['r']) if gr['r'] < 10 else 0
         horizontal = abs(gr['angle']) < 0.5 or abs(gr['angle'] - 180) < 0.5
         vertical = abs(gr['angle'] - 90) < 0.5
         froma = f"{gr['mid'][1]:.2f} (Y)" if horizontal else (f"{gr['mid'][0]:.2f} (X)" if vertical else 'see view')
@@ -494,7 +494,9 @@ def part_sheet(pdf, R, idx, total):
         y -= 5.2
     if not R['groups']:
         tx.text(2, 54, 'No bends - flat laser-cut part.', fontsize=6.5, color=INK)
-    tx.text(2, 3, f'BA = bend allowance, BD = bend deduction (mm), K = {K}, inside radius as listed.\nV-die = recommended opening (mm). "From A" = bend-line centre from datum edge.', fontsize=5, va='bottom', color='#444444')
+    tight = [f"B{q['seq']}" for q in R['groups'] if q['r'] < R['t']]
+    warn = ('\nWARNING: ' + ', '.join(tight) + f' inside R < 1T - cracking risk in 304; use R >= {R["t"]:g} tooling or prove on first-off.') if tight else ''
+    tx.text(2, 2, f'BA = bend allowance, BD = bend deduction (mm), K = {K}, inside radius as listed. V-die = 8T opening (mm).\n"From A" = bend-line centre from datum edge. 304: ~1.5x mild-steel tonnage, 2-3 deg extra springback.' + warn, fontsize=5, va='bottom', color='#b00000' if tight else '#444444')
 
     # ---- section sketch
     sx_y, sx_h = 120, 76
@@ -548,10 +550,10 @@ def part_sheet(pdf, R, idx, total):
 def assembly_sheet(pdf, results, idx, total):
     fig = plt.figure(figsize=(A3[0] / 25.4, A3[1] / 25.4))
     sheet_mass = sum(r['mass'] * r['qty'] for r in results)
-    fields = [('Material', MATERIAL.split(' ')[0]), ('Sheet parts', str(sum(r['qty'] for r in results))), ('Plate mass', f'{sheet_mass:.1f} kg (excl. tube)'),
+    fields = [('Material', '304 SS 2B'), ('Sheet parts', str(sum(r['qty'] for r in results))), ('Plate mass', f'{sheet_mass:.1f} kg (excl. tube)'),
               ('Overall width', '1741 mm'), ('Centre section', '835 mm'), ('End sections', '448 mm each'),
               ('Thicknesses', '2 / 3 / 5 / 8 mm'), ('Fitment', 'TBC (per source 4x4 design)'), ('Tube', '50 mm dia (per BOM)'),
-              ('Welding', 'MIG, ER70S-6'), ('Finish', 'Powder coat, black'), ('Pack', f'{PRODUCT} rev {REV}')]
+              ('Welding', 'TIG/MIG, ER308L, purge'), ('Finish', 'Brushed, passivated'), ('Pack', f'{PRODUCT} rev {REV}')]
     bx = frame_and_titleblock(fig, PRODUCT + '-ASM', 'BULL BAR  -  ASSEMBLY, BOM & CUT LIST', fields, f'{idx} of {total}', '1:20')
     # assembly images
     im = imread(f'{S}/pdfpng/a150-01.png')
@@ -591,19 +593,20 @@ def assembly_sheet(pdf, results, idx, total):
     for t in sorted(by_t):
         parts = by_t[t]
         area = sum(p['area'] * p['qty'] for p in parts) / 1e6
-        txt = f"{t:g} mm {MATERIAL.split(' ')[0]}:  " + ', '.join(f"{p['no'][-2:]} x{p['qty']}" for p in parts) + f"   |  net {area:.2f} m2  |  {sum(p['mass']*p['qty'] for p in parts):.1f} kg"
+        txt = f"{t:g} mm 304 SS:  " + ', '.join(f"{p['no'][-2:]} x{p['qty']}" for p in parts) + f"   |  net {area:.2f} m2  |  {sum(p['mass']*p['qty'] for p in parts):.1f} kg"
         tx.text(1.5, y, txt, fontsize=5.6, va='center'); y -= 5
     y -= 2
     tx.plot([0, 176], [y + 3, y + 3], color=INK, lw=0.5)
     tx.text(1.5, y, 'PROCESS NOTES', fontsize=6.5, va='center', fontproperties=FONT); y -= 6
     for n in ['1. Laser cut all plate 1:1 from DXF (layer CUT). Layers BEND_UP / BEND_DOWN are bend-line centres - do not cut.',
               '2. Layer ETCH = low-power surface mark (wordmark on centre panel). Layer INFO = reference text only.',
-              '3. Flats are developed at K = 0.44 (air bend, mild steel). Re-check first-off against the bend table before batch forming.',
-              '4. Deburr all edges; break sharp corners 0.5 mm. Remove dross from 8 mm lugs.',
+              '3. Flats are developed at K = 0.46 (air bend, 304). 304 springs back 2-3 deg more than mild steel - over-bend and check first-off against the bend table.',
+              '4. Laser cut with nitrogen (oxide-free edge). Deburr; break sharp corners 0.5 mm. Stainless-only tooling, films and brushes - no carbon-steel contamination.',
               '5. Bend direction is viewed from the flat-pattern face shown on each sheet (UP = flange toward viewer).',
               '6. Tube items 8/9/10/15/16 are not in this plate pack - lengths and bend data to come from the 3D model.',
               '7. Items 17/18 (face strips): source drawing states "NO BENDING" yet carries bend notes - confirm with design before forming.',
-              '8. Weld sequence: tack brackets (06) to centre (01) and P2/P3 (12/13); fit uprights (03/14) and lugs (07); add ends (02/04) and end plates (05) last.']:
+              '8. Weld sequence: tack brackets (06) to centre (01) and P2/P3 (12/13); fit uprights (03/14) and lugs (07); add ends (02/04) and end plates (05) last.',
+              '9. Several source bend radii are below 1T (red warnings on sheets 05, 06, 11, 03/14, 17/18). Workable in 304 with a sharp-nose punch; confirm on first-off - if it cracks, open the radius.']:
         tx.text(1.5, y, n, fontsize=5.3, va='center'); y -= 4.6
     pdf.savefig(fig); fig.savefig(f'{PDF_DIR}/{PRODUCT}-ASM_assembly_sheet.pdf'); plt.close(fig)
 

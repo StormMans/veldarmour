@@ -52,12 +52,12 @@ the assembly sheet only – no lengths or bend data exist in the source files.
 
 ## Engineering assumptions (change in `tools/build.py` and rebuild)
 
-- Material **S355JR mild steel** (the earlier Hilux pack used 3CR12 – swap `MATERIAL` if this bar is stainless).
-- **K-factor 0.44**, air bending. Flats are the developed lengths from the source model; the bend
+- Material **304 stainless steel (1.4301), 2B finish**. Density 7.93 g/cm³.
+- **K-factor 0.46**, air bending (304). V-die = 8T. Expect roughly 1.5x mild-steel tonnage and 2–3° extra springback; over-bend and prove on a first-off. Flats are the developed lengths from the source model; the bend
   table on each sheet gives bend allowance / deduction and a recommended V-die so a first-off can
   be checked before batch forming.
 - Bend angles follow the SolidWorks bend-note convention (90° = right angle, 162° = 18° included).
-- Density 7.85 g/cm³ for mass.
+- Laser cut with nitrogen for an oxide-free edge; stainless-only tooling and brushes; TIG/MIG with ER308L, passivate after welding.
 
 ## Known caveats (also printed on the sheets)
 
@@ -66,7 +66,8 @@ the assembly sheet only – no lengths or bend data exist in the source files.
 2. **Handing:** end panels 02/04 are named by source item number; which is LH/RH on the vehicle
    depends on fitment, which the source does not state.
 3. **Fitment / vehicle:** not stated in the source. Overall width 1741 mm, centre 835 mm.
-4. The source Upright and Spot-bracket flats contained duplicated zero-width relief geometry from
+4. Several source inside radii are below 1T (R1.25 on 2 mm, R1.5 on 3 mm, R3 on 5 mm). Sheets carry a red warning; workable in 304 with a sharp-nose punch but confirm on first-off.
+5. The source Upright and Spot-bracket flats contained duplicated zero-width relief geometry from
    the SolidWorks export; it has been removed and the outlines rebuilt as single closed contours.
 
 ## Rebuild
