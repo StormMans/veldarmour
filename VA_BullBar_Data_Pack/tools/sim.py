@@ -307,15 +307,15 @@ if __name__ == '__main__':
 
     # ---- structural hand calcs
     S_ = report['struct']
-    # lug: 12 mm, dia 30 hole, R30 boss -> 15 mm ligament each side
-    t = 12.0; w_lig = 15.0
+    # lug: 12 mm, dia 30 hole, R35 boss -> 20 mm ligament each side
+    t = 12.0; w_lig = 20.0
     net_t = 2 * w_lig * t * YS / 1000; tear = 2 * w_lig * t * 0.6 * YS / 1000; bearing = 30 * t * 1.5 * YS / 1000
-    S_.append(dict(item='Recovery lug VA-BB-07 (12 mm 304, dia 30, R30 boss)',
-                   lines=[f'Net tension at hole: 2 x 15 x 12 x {YS:.0f} MPa = {net_t:.0f} kN ({net_t/9.81:.1f} t) at yield',
-                          f'Shear tear-out (2 planes x 15 mm): {tear:.0f} kN ({tear/9.81:.1f} t) at yield',
+    S_.append(dict(item='Recovery lug VA-BB-07 (12 mm 304, dia 30, R35 boss)',
+                   lines=[f'Net tension at hole: 2 x 20 x 12 x {YS:.0f} MPa = {net_t:.0f} kN ({net_t/9.81:.1f} t) at yield',
+                          f'Shear tear-out (2 planes x 20 mm): {tear:.0f} kN ({tear/9.81:.1f} t) at yield',
                           f'Pin bearing (dia 30 x 12, 1.5 Fy): {bearing:.0f} kN ({bearing/9.81:.1f} t)',
                           f'Governing: tear-out {min(net_t, tear, bearing):.0f} kN ({min(net_t, tear, bearing)/9.81:.1f} t) at yield, ~{min(net_t, tear, bearing)*UTS/YS:.0f} kN ({min(net_t, tear, bearing)*UTS/YS/9.81:.1f} t) ultimate per lug - before the weld to the 3 mm end panel is considered.',
-                          'VERDICT: at 12 mm the lug itself carries ~4.6 t at yield / ~11 t ultimate - adequate for a 2.5-3 t vehicle recovery point PROVIDED the load path is welded through to the chassis bracket (full-penetration fillet both sides, 8 mm leg). The 3 mm end panel alone must not carry it. For a certified rating, test to 2 x GVM.']))
+                          'VERDICT: at 12 mm / R35 the lug itself carries ~6.2 t at yield / ~15 t ultimate - adequate for a 2.5-3 t vehicle recovery point PROVIDED the load path is welded through to the chassis bracket (full-penetration fillet both sides, 8 mm leg). The 3 mm end panel alone must not carry it. For a certified rating, test to 2 x GVM.']))
     # hoop tube 50x2
     D, tw = 50.0, 2.0
     I = math.pi / 64 * (D ** 4 - (D - 2 * tw) ** 4); Z = I / (D / 2)
@@ -400,7 +400,7 @@ if __name__ == '__main__':
         lines = [('FOLDS', 'All 13 flats fold without self-clash. Formed sections match the source drawing within 1 mm (bracket 115.1 vs 116, P2 238.1 vs 238.64, P3 82.7 vs 83, upright joggle 56.3 vs 56.32, centre Z 80.0 vs 80.34) - the residual is the K-factor difference between the source model and K = 0.46.' if fold_ok else 'See fold table - clashes found.'),
                  ('STACK-UP', '835 + 2x5 + 448.28 + 447.81 = 1741.09 - exact match to the overall width. Parts fit.'),
                  ('BRAKE', f'{len(short)} bend(s) have a flange shorter than the 8T die allows - swap to the V listed in the brake table (gooseneck punch for the centre panel Z). Max tonnage {max(b["tonnes"] for b in report["brake"]):.0f} t on the 835 mm bends - needs a 40 t+ brake.'),
-                 ('STRUCTURE', 'Centre section OK for a 10 kN push. Side hoops are cosmetic/handhold grade. 12 mm lugs carry ~4.6 t yield / ~11 t ultimate each - recovery-capable if welded through to the bracket. Bracket slots are 13 wide - M12 as drawn.'),
+                 ('STRUCTURE', 'Centre section OK for a 10 kN push. Side hoops are cosmetic/handhold grade. 12 mm / R35 lugs carry ~6.2 t yield / ~15 t ultimate each - recovery-capable if welded through to the bracket. Bracket slots are 13 wide - M12 as drawn.'),
                  ('NESTING', ', '.join(f"{n['t']:g} mm: {n['sheets']} sheet(s) at {n['util']:.0f}%" for n in report['nest']))]
         for k, v in lines:
             ax.text(12, y, k, fontsize=7.5, fontproperties=B.FONT, color=B.INK); ax.text(40, y, v, fontsize=7, wrap=True); y -= 7

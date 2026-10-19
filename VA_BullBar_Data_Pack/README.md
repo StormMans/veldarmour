@@ -41,7 +41,7 @@ they read correctly on the outside face of the finished bar.
 | VA-BB-04 | End panel, opposite hand (source item 4) | 3 | 1 | 688 x 687 | 6 |
 | VA-BB-05 | End plate | 3 | 2 | 269 x 78 | 1 |
 | VA-BB-06 | Bracket 1 (chassis bracket) | 5 | 2 | 184 x 258 | 2 |
-| VA-BB-07 | Recovery lug (redrawn from assy sheet 8, upgraded to 12 mm) | 12 | 4 | 91 x 92 | 0 |
+| VA-BB-07 | Recovery lug (redrawn from assy sheet 8, uprated to 12 mm, R35 boss) | 12 | 4 | 96 x 97 | 0 |
 | VA-BB-11 | Spot bracket (light mount) | 2 | 2 | 60 x 89 | 2 |
 | VA-BB-12 | Centre panel P2 (top plate) | 3 | 1 | 835 x 289 | 2 |
 | VA-BB-13 | Centre panel P3 (lower channel) | 3 | 1 | 835 x 153 | 2 |
@@ -86,7 +86,7 @@ spec). Verify on the jig before cutting a batch.
 - All 13 flats fold without self-clash; formed sections agree with the source drawing within 1 mm.
 - Stack-up 835 + 2 x 5 + 448.28 + 447.81 = 1741.09, exact.
 - Press brake: centre-panel 15 mm lip is too short for an 8T (24 mm) V-die - use V = 18. Peak tonnage 22 t on the 835 mm bends (29 t at V = 18).
-- Structure: centre section has a 10x+ margin for a 10 kN frontal push; side hoops are handhold grade; 12 mm lugs carry ~4.6 t yield / ~11 t ultimate each (weld through to the chassis bracket); bracket slots are 13 wide, M12 as drawn.
+- Structure: centre section has a 10x+ margin for a 10 kN frontal push; side hoops are handhold grade; 12 mm / R35 lugs carry ~6.2 t yield / ~15 t ultimate each (weld through to the chassis bracket); bracket slots are 13 wide, M12 as drawn.
 - Nesting: one 2500 x 1250 sheet per thickness.
 
 ## Rebuild

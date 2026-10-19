@@ -65,7 +65,7 @@ PARTS = [
          notes=['U-channel: bend both legs in the same direction. Check slot alignment to chassis rail after forming.']),
     dict(no='VA-BB-07', name='Recovery lug', src=None, t=12.0, qty=4, item=7,
          bends=[], ref=(8, (170, 110, 480, 450)), lug=True,
-         notes=['Redrawn from assembly drawing sheet 8 (no flat supplied in source). Dia 30 hole, R30 boss. Upgraded from 8 mm to 12 mm (Rev A).',
+         notes=['Redrawn from assembly drawing sheet 8 (no flat supplied in source). Dia 30 hole. Uprated from the source 8 mm / R30 to 12 mm / R35 boss (20 mm ligament); boss overhangs the upright R30 by 5 mm.',
                 'Laser cut 12 mm with nitrogen; dress the hole for a 30 mm pin / shackle bow. Weld through to the chassis bracket, not only to the 3 mm end panel.']),
     dict(no='VA-BB-11', name='Spot bracket (light mount)', src='e3a78948-Flat_pattern_-_SPOT_BRKT.DXF', t=2.0, qty=2, item=11,
          bends=[('auto', 'DOWN', 50.0, 1.25), ('auto', 'DOWN', 50.0, 1.25)],
@@ -155,15 +155,18 @@ def envelope_fix(cut):
 
 
 def make_lug():
-    """Recovery lug from sheet 8: dia 30 hole, R30 boss, tapered tab. Hole centre at origin."""
-    A = (-27.3, 12.4); B = (-5.0, 61.7); C = (60.6, 13.8); D = (60.6, -14.6); E = (52.1, -14.6); F = (9.3, -28.5)
-    # snap A and F exactly onto R30
-    def on30(p):
-        a = math.atan2(p[1], p[0]); return (30 * math.cos(a), 30 * math.sin(a))
-    A = on30(A); F = on30(F)
+    """Recovery lug from sheet 8, uprated: dia 30 hole, R35 boss (20 mm ligament), tapered tab. Hole centre at origin."""
+    RB = 35.0
+    B = (-5.0, 61.7); C = (60.6, 13.8); D = (60.6, -14.6); E = (52.1, -14.6)
+    def tangent(P, want_deg):
+        th = math.atan2(P[1], P[0]); al = math.acos(RB / math.hypot(*P))
+        cands = [th + al, th - al]
+        a = min(cands, key=lambda c: abs((math.degrees(c) - want_deg + 180) % 360 - 180))
+        return (RB * math.cos(a), RB * math.sin(a))
+    A = tangent(B, 155.0); F = tangent(E, -72.0)
     sa = math.degrees(math.atan2(A[1], A[0])); ea = math.degrees(math.atan2(F[1], F[0]))
     prims = [
-        {'t': 'ARC', 'c': (0.0, 0.0), 'r': 30.0, 's': sa, 'e': ea % 360},
+        {'t': 'ARC', 'c': (0.0, 0.0), 'r': RB, 's': sa, 'e': ea % 360},
         {'t': 'LINE', 'a': A, 'b': B}, {'t': 'LINE', 'a': B, 'b': C}, {'t': 'LINE', 'a': C, 'b': D},
         {'t': 'LINE', 'a': D, 'b': E}, {'t': 'LINE', 'a': E, 'b': F},
         {'t': 'CIRCLE', 'c': (0.0, 0.0), 'r': 15.0},

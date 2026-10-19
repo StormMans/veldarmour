@@ -623,13 +623,13 @@
  ],
  "struct": [
   {
-   "item": "Recovery lug VA-BB-07 (12 mm 304, dia 30, R30 boss)",
+   "item": "Recovery lug VA-BB-07 (12 mm 304, dia 30, R35 boss)",
    "lines": [
-    "Net tension at hole: 2 x 15 x 12 x 210 MPa = 76 kN (7.7 t) at yield",
-    "Shear tear-out (2 planes x 15 mm): 45 kN (4.6 t) at yield",
+    "Net tension at hole: 2 x 20 x 12 x 210 MPa = 101 kN (10.3 t) at yield",
+    "Shear tear-out (2 planes x 20 mm): 60 kN (6.2 t) at yield",
     "Pin bearing (dia 30 x 12, 1.5 Fy): 113 kN (11.6 t)",
-    "Governing: tear-out 45 kN (4.6 t) at yield, ~112 kN (11.4 t) ultimate per lug - before the weld to the 3 mm end panel is considered.",
-    "VERDICT: at 12 mm the lug itself carries ~4.6 t at yield / ~11 t ultimate - adequate for a 2.5-3 t vehicle recovery point PROVIDED the load path is welded through to the chassis bracket (full-penetration fillet both sides, 8 mm leg). The 3 mm end panel alone must not carry it. For a certified rating, test to 2 x GVM."
+    "Governing: tear-out 60 kN (6.2 t) at yield, ~150 kN (15.3 t) ultimate per lug - before the weld to the 3 mm end panel is considered.",
+    "VERDICT: at 12 mm / R35 the lug itself carries ~6.2 t at yield / ~15 t ultimate - adequate for a 2.5-3 t vehicle recovery point PROVIDED the load path is welded through to the chassis bracket (full-penetration fillet both sides, 8 mm leg). The 3 mm end panel alone must not carry it. For a certified rating, test to 2 x GVM."
    ]
   },
   {
@@ -699,7 +699,7 @@
   {
    "t": 12.0,
    "sheets": 1,
-   "util": 0.594506094611007,
+   "util": 0.6757313817851176,
    "parts": 4
   }
  ]
