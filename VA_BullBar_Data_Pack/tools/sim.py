@@ -448,10 +448,12 @@ if __name__ == '__main__':
         for s_ in report['struct']:
             ax.text(10, y, s_['item'], fontsize=7.5, fontproperties=B.FONT); y -= 4.6
             for l in s_['lines']:
-                ax.text(14, y, l, fontsize=6.3, wrap=True, color='#b00000' if ('NOT' in l or 'YIELDS' in l) else B.INK); y -= 4.2
+                import textwrap
+                for ll in textwrap.wrap(l, 175):
+                    ax.text(14, y, ll, fontsize=6.3, color='#b00000' if ('NOT' in l or 'YIELDS' in l) else B.INK); y -= 4.0
             y -= 2.5
         # section sketch
-        sx = fig.add_axes([205 / A4[0], 12 / A4[1], 85 / A4[0], 95 / A4[1]]); sx.set_aspect('equal'); sx.set_axis_off()
+        sx = fig.add_axes([232 / A4[0], 10 / A4[1], 60 / A4[0], 75 / A4[1]]); sx.set_aspect('equal'); sx.set_axis_off()
         off = 0
         for no, (A, Ix, poly) in secs.items():
             xs, ys = poly.exterior.xy
