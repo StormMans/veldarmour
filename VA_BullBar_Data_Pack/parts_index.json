@@ -390,10 +390,10 @@
   "qty": 2,
   "item": 8,
   "od": 38.1,
-  "wall": 3.0,
+  "wall": 2.0,
   "cut": 100.0,
   "bends": [],
-  "spec": "CHS 38.1 x 3.0",
+  "spec": "CHS 38.1 x 2.0",
   "conf": "approx."
  },
  {

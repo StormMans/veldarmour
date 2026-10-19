@@ -97,8 +97,8 @@ PARTS = [
 # Tube schedule - measured from the 1:20 assembly drawing (front and side views, sheet 1).
 # Scale derived from the 1741.09 overall dimension (7.0573 mm per drawing pt).
 TUBES = [
-    dict(no='VA-BB-08', name='Pipe lift (jacking stub)', qty=2, item=8, od=38.1, wall=3.0, cut=100.0,
-         bends=[], spec='CHS 38.1 x 3.0', conf='approx.',
+    dict(no='VA-BB-08', name='Pipe lift (jacking stub)', qty=2, item=8, od=38.1, wall=2.0, cut=100.0,
+         bends=[], spec='CHS 38.1 x 2.0', conf='approx.',
          how='Seen end-on under the centre section in the front view (Ø38 outer / Ø32 inner at 705 mm centres); length from side view.'),
     dict(no='VA-BB-09', name='Pipe centre (top hoop)', qty=1, item=9, od=63.5, wall=2.0, cut=702.0,
          bends=[], spec='CHS 63.5 x 2.0', conf='measured',
@@ -617,7 +617,7 @@ def assembly_sheet(pdf, results, idx, total):
               '3. Flats are developed at K = 0.46 (air bend, 304). 304 springs back 2-3 deg more than mild steel - over-bend and check first-off against the bend table.',
               '4. Laser cut with nitrogen (oxide-free edge). Deburr; break sharp corners 0.5 mm. Stainless-only tooling, films and brushes - no carbon-steel contamination.',
               '5. Bend direction is viewed from the flat-pattern face shown on each sheet (UP = flange toward viewer).',
-              '6. Tube items 8/9/10/15/16: cut lengths and bend data on the TUBE SCHEDULE sheet, measured from the 1:20 assembly views. Wall thicknesses are assumed - confirm stock.',
+              '6. Tube items 8/9/10/15/16: cut lengths and bend data on the TUBE SCHEDULE sheet, measured from the 1:20 assembly views. Wall 2.0 mm on all tubes.',
               '7. Items 17/18 (face strips): bend as drawn (the source "NO BENDING" note is superseded). The R42 wrap matches the upright top radius.',
               '8. Weld sequence: tack brackets (06) to centre (01) and P2/P3 (12/13); fit uprights (03/14) and lugs (07); add ends (02/04) and end plates (05) last.',
               '9. Several source bend radii are below 1T (red warnings on sheets 05, 06, 11, 03/14, 17/18). Workable in 304 with a sharp-nose punch; confirm on first-off - if it cracks, open the radius.']:
@@ -631,7 +631,7 @@ def tube_sheet(pdf, idx, total):
     tube_mass = sum(math.pi * (t['od'] ** 2 - (t['od'] - 2 * t['wall']) ** 2) / 4 * t['cut'] * DENSITY * t['qty'] for t in TUBES)
     fields = [('Material', '304 SS CHS'), ('Tube items', str(sum(t['qty'] for t in TUBES))), ('Tube mass', f'{tube_mass:.1f} kg'),
               ('Hoop CLR', '80 mm (1.6 D)'), ('Bend method', 'Mandrel / rotary draw'), ('Source scale', '1:20, sheet 1'),
-              ('Wall', 'assumed - confirm stock'), ('Fitment', 'TBC'), ('End cuts', 'square unless noted'),
+              ('Wall', '2.0 mm all tubes'), ('Fitment', 'TBC'), ('End cuts', 'square unless noted'),
               ('Tol. length', '+/- 1 mm'), ('Tol. angle', '+/- 1 deg'), ('Finish', 'Brushed, passivated')]
     bx = frame_and_titleblock(fig, PRODUCT + '-TUBE', 'TUBE SCHEDULE  -  CUT LENGTHS & BEND DATA', fields, f'{idx} of {total}', '1:5')
     # ---- hoop drawing (true view in bend plane)
@@ -686,7 +686,7 @@ def tube_sheet(pdf, idx, total):
             tx.text(2, y, f"  bend {b['angle']}°, CLR {b['clr']}, legs {b['legA']} / {b['legB']} (tangent to end), bend plane {b['plane']}° rearward", fontsize=5.6, va='center'); y -= 4.2
         tx.text(2, y, t['how'], fontsize=5, va='center', color='#444444', wrap=True); y -= 8.5
         tx.plot([0, rw], [y + 3, y + 3], color='#bbbbbb', lw=0.4)
-    tx.text(2, 3, 'Measured from source assembly views at 1:20 (scale set from the 1741.09 dim). Wall thickness is not stated in the source - assumed. Verify first-off on the jig.', fontsize=5, va='bottom', color='#b00000')
+    tx.text(2, 3, 'Measured from source assembly views at 1:20 (scale set from the 1741.09 dim). Wall 2.0 mm on all tubes per Veld Armour. Verify first-off on the jig.', fontsize=5, va='bottom', color='#b00000')
     # ---- source views
     for i, (nm, lab) in enumerate([('front', 'SOURCE FRONT VIEW (measured)'), ('side', 'SOURCE SIDE VIEW (measured)')]):
         im = imread(f'{S}/png/z_{nm}.png')

@@ -51,13 +51,13 @@ they read correctly on the outside face of the finished bar.
 
 | VA part no. | Description | Section | Cut length | Bends |
 |---|---|---|---|---|
-| VA-BB-08 | Pipe lift (jacking stub) x2 | CHS 38.1 x 3.0 | 100 (approx.) | – |
+| VA-BB-08 | Pipe lift (jacking stub) x2 | CHS 38.1 x 2.0 | 100 (approx.) | – |
 | VA-BB-09 | Pipe centre (top hoop) | CHS 63.5 x 2.0 | 702 | – |
 | VA-BB-10 | Pipe spot (light bar) | CHS 38.1 x 2.0 | 805 | – |
 | VA-BB-15/16 | Tube 50 side hoop LH / RH | CHS 50 x 2.0 | 510 | 1 x 90°, CLR 80, legs 180 / 204, bend plane 25° rearward |
 
-Scale was fixed from the 1741.09 mm overall dimension; wall thicknesses are not in the source and
-are assumed. Verify on the jig before cutting a batch.
+Scale was fixed from the 1741.09 mm overall dimension. Wall is 2.0 mm on all tubes (Veld Armour
+spec). Verify on the jig before cutting a batch.
 
 ## Engineering assumptions (change in `tools/build.py` and rebuild)
 
