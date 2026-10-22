@@ -59,7 +59,7 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 <div class="wrap">
   <div class="eyebrow">Veld Armour · Product concept · Rev A · 22 Oct 2026</div>
   <h1>Gullwing doors + cantilever rack</h1>
-  <p class="lead">A VA canopy where the whole side lifts up like a wing and the roof rack runs forward over the cab. Built on the Hilux GD6 DC master (TOD6 v1.2 / 40xxx data pack), 1.5 mm 3CR12, welded and powder coated as now.</p>
+  <p class="lead">A VA canopy where the whole side lifts up like a wing and the roof rack runs forward over the cab. Interactive 3D render: <a href="https://claude.ai/artifact/UGpEWEDyMWhPfA3iGL867Q">VA Gullwing Render</a>. Built on the Hilux GD6 DC master (TOD6 v1.2 / 40xxx data pack), 1.5 mm 3CR12, welded and powder coated as now.</p>
   <div class="meta"><span>Base: Hilux GD6 DC master</span><span>Material: 3CR12 1.5 mm</span><span>Status: concept, not yet drawn in CAD</span></div>
 
   <h2>1 · What the photo is</h2>
@@ -88,7 +88,7 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
   <div class="tbl"><table>
     <tr><th>Feature</th><th>VA Hilux GD6 DC today (TOD6 v1.2)</th><th>Target for this concept</th></tr>
     <tr><td>Side opening</td><td class="n">Door 40109: 1 345 × 337 mm, framed by top panel (40106) and bottom panel (40110)</td><td class="n">Door ≈ 1 450 × 400 mm, the whole side between front and rear corner posts</td></tr>
-    <tr><td>Opening angle</td><td>Strut-limited, roughly 60–70°</td><td class="n">85–90°, door edge ≈ 2.3 m above ground, head-clear</td></tr>
+    <tr><td>Opening angle</td><td>Strut-limited, roughly 60–70°</td><td class="n">≈ 100° (wing 10° above horizontal), tip ≈ 1.95 m off the ground, 390 mm outboard</td></tr>
     <tr><td>Struts per side door</td><td class="n">1 × SA4041</td><td class="n">2 per door, re-sized with Struts Africa</td></tr>
     <tr><td>Side lock</td><td>1 × Furnlock per door</td><td>2-point latch per door (long door seals at both ends)</td></tr>
     <tr><td>Hinge</td><td>Bracketed pivot at top corners</td><td>Continuous 304 piano hinge under the roof edge, covered by the roof drip flange</td></tr>
@@ -123,9 +123,8 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
       <rect x="63" y="105" width="233" height="6" fill="var(--ink)"/>
       <line x1="226" y1="111" x2="226" y2="117" stroke="var(--ink)" stroke-width="2"/>
       <line x1="200" y1="111" x2="200" y2="113" stroke="var(--ink)" stroke-width="2"/>
-      <rect x="70" y="77" width="145" height="40" fill="var(--card)" stroke="var(--gold)" stroke-width="2"/>
-      <rect x="90" y="84" width="105" height="24" rx="3" fill="none" stroke="var(--gold)" stroke-width="1"/>
-      <text x="142" y="72" font-size="9" fill="var(--gold)" text-anchor="middle">DOOR OPEN 85° · top edge ≈ 2 300 off ground</text>
+      <rect x="70" y="97" width="145" height="7" fill="var(--gold)" stroke="var(--gold)" stroke-width="1"/>
+      <text x="142" y="92" font-size="9" fill="var(--gold)" text-anchor="middle">DOOR OPEN 100° · seen edge-on, wing sticks out 390 toward viewer · tip ≈ 1 950 off ground</text>
       <!-- cab clearance -->
       <line x1="262" y1="105" x2="262" y2="119" stroke="var(--muted)" stroke-width="1"/>
       <text x="268" y="128" font-size="8" fill="var(--muted)">≥ 50 clear of cab roof (verify)</text>
@@ -140,7 +139,7 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
       <text x="36" y="140" font-size="8" fill="var(--fg)" text-anchor="end">485</text>
       <text x="500" y="330" font-size="9" fill="var(--muted)" text-anchor="middle">SIDE ELEVATION · LEFT · 1 px = 10 mm</text>
     </svg>
-    <div class="cap">Fig 1 · Side. Hinge line sits under the roof edge so the roof flange acts as the drip rail over the hinge. Door at 85° lands clear of a standing person.</div>
+    <div class="cap">Fig 1 · Side. Hinge line sits under the roof edge so the roof flange acts as the drip rail over the hinge. At 100° the wing sits just above the roof line, tip at about 1.95 m, so most people walk under it.</div>
   </div>
 
   <div class="grid2">
@@ -156,22 +155,22 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
         <!-- rack -->
         <rect x="72" y="95" width="156" height="6" fill="var(--ink)"/>
         <!-- open doors, 40px tall, rotate about hinge points (70,104) and (230,104) -->
-        <line x1="70" y1="104" x2="66.5" y2="64" stroke="var(--gold)" stroke-width="3"/>
-        <line x1="230" y1="104" x2="233.5" y2="64" stroke="var(--gold)" stroke-width="3"/>
-        <line x1="70" y1="104" x2="44" y2="73" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="3 2"/>
-        <line x1="230" y1="104" x2="256" y2="73" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="3 2"/>
+        <line x1="70" y1="104" x2="30.6" y2="97.1" stroke="var(--gold)" stroke-width="3"/>
+        <line x1="230" y1="104" x2="269.4" y2="97.1" stroke="var(--gold)" stroke-width="3"/>
+        <line x1="70" y1="104" x2="39.4" y2="129.7" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="3 2"/>
+        <line x1="230" y1="104" x2="260.6" y2="129.7" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="3 2"/>
         <circle cx="70" cy="104" r="2.5" fill="var(--gold)"/><circle cx="230" cy="104" r="2.5" fill="var(--gold)"/>
-        <text x="150" y="50" font-size="9" fill="var(--gold)" text-anchor="middle">doors up 85° · tip-to-tip ≈ 1 660</text>
-        <text x="150" y="80" font-size="7" fill="var(--muted)" text-anchor="middle">dashed: mid-swing 50°</text>
+        <text x="150" y="70" font-size="9" fill="var(--gold)" text-anchor="middle">wings at 100° · tip-to-tip ≈ 2 380</text>
+        <text x="150" y="84" font-size="7" fill="var(--muted)" text-anchor="middle">dashed: mid-swing 50°</text>
         <line x1="70" y1="255" x2="230" y2="255" stroke="var(--muted)" marker-start="url(#ar)" marker-end="url(#ar)"/>
         <text x="150" y="252" font-size="9" fill="var(--fg)" text-anchor="middle">1 594</text>
         <line x1="250" y1="102" x2="250" y2="150" stroke="var(--muted)" marker-start="url(#ar)" marker-end="url(#ar)"/>
         <text x="256" y="130" font-size="8" fill="var(--fg)">485</text>
-        <line x1="40" y1="104" x2="40" y2="144" stroke="var(--gold)" marker-start="url(#ar)" marker-end="url(#ar)"/>
-        <text x="36" y="128" font-size="8" fill="var(--gold)" text-anchor="end">400</text>
+        <line x1="20" y1="104" x2="20" y2="144" stroke="var(--gold)" marker-start="url(#ar)" marker-end="url(#ar)"/>
+        <text x="18" y="160" font-size="8" fill="var(--gold)">400 door</text>
         <text x="150" y="20" font-size="9" fill="var(--muted)" text-anchor="middle">REAR ELEVATION</text>
       </svg>
-      <div class="cap">Fig 2 · Rear. Both wings up. The 400 mm door leaves ~85 mm of fixed panel at the rail for the seal land and lock keeps.</div>
+      <div class="cap">Fig 2 · Rear. Both wings up, 390 mm outboard each side. The 400 mm door leaves ~85 mm of fixed panel at the rail for the seal land and lock keeps.</div>
     </div>
     <div class="drawing">
       <svg viewBox="0 0 300 260" role="img" aria-label="Plan view of the cantilever roof rack over the canopy outline, 2330 by 1450 mm with seven cross bars and shield-shaped tie-down slots">
@@ -211,7 +210,7 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
     <li><strong>Shrink</strong> 40110 / 40101 (Onder) to an 85 mm sill strip with the seal land and two lock keeps.</li>
     <li><strong>New door</strong> replaces 40109 / 40102: 1 450 × 400 outer, 1.5 mm 3CR12, 20 mm hem all round as now, plus one 25 mm Z-stiffener welded along the inside at mid-height. A 1.5 mm skin this size oil-cans without it.</li>
     <li><strong>Hinge</strong>: 304 stainless piano hinge, 1 450 long, 1.5 mm leaf, riveted or plug-welded to the roof flange and door hem. Roof drip flange overhangs it by 10 mm.</li>
-    <li><strong>Struts</strong>: 2 per door. Door mass estimate 9 kg steel + 3 kg glass, centre of mass 200 mm below hinge, closed moment ≈ 24 N·m. Size with Struts Africa (current part SA4041) for hold-open at 85° and a controlled last 150 mm of close. Brackets GB-1003/4/5 move to the corner posts.</li>
+    <li><strong>Struts</strong>: 2 per door. Door mass estimate 9 kg steel + 3 kg glass, centre of mass 200 mm below hinge, closed moment ≈ 24 N·m. Size with Struts Africa (current part SA4041) for hold-open at 100° and a controlled last 150 mm of close. Brackets GB-1003/4/5 move to the corner posts.</li>
     <li><strong>Locks</strong>: one Furnlock T-handle driving a 2-point rod latch, or two push-button locks 1 100 mm apart. One lock on a 1.45 m door leaves the far end rattling.</li>
     <li><strong>Seal</strong>: Rubberite bulb seal on the aperture flange all round, same as the rear door. Add two drain slots in the sill strip.</li>
     <li><strong>Window</strong>: Alwin glass in the door as now, 1 100 × 250 cut-out, or a blank "N" version.</li>
@@ -247,7 +246,7 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
   <ol>
     <li>Measure on a GD6 DC with canopy fitted: rail-to-cab-roof height, antenna position, distance from canopy front edge to windscreen top. Record in the fitment library.</li>
     <li>Prototype one wing door on the left side of the next GD6 build. Keep the right side standard so the two can be compared on the same bakkie.</li>
-    <li>Send Struts Africa the door mass, hinge-to-strut geometry and 85° target; fit their recommended pair.</li>
+    <li>Send Struts Africa the door mass, hinge-to-strut geometry and 100° target; fit their recommended pair.</li>
     <li>Build the long rack as a bolt-on to the existing roof, test with 150 kg static on the overhang and a corrugated-road drive with 75 kg before rating it.</li>
     <li>If both pass, update the TOD6 drawings to v1.3 and the BOM, then re-shoot the brochure gallery with the wings up. That photo sells it.</li>
   </ol>

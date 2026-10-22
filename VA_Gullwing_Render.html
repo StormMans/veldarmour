@@ -1,0 +1,296 @@
+<title>VA Gullwing Render</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&display=swap">
+<style>
+/* Layout: full-bleed 3D viewport with a slim control bar at the bottom. Veld Armour tokens. */
+:root{
+  --bg:#e9e5de; --fg:#141414; --muted:#5c5c5c; --panel:rgba(245,242,237,.92); --line:#cfc8bb;
+  --gold:#8a6e28; --gold-bright:#c8a84b;
+  --display:'Bebas Neue',Impact,sans-serif; --mono:'Share Tech Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0f0f0f; --fg:#f5f2ed; --muted:#a8a39a; --panel:rgba(16,16,16,.9); --line:#2e2e2e; --gold:#c8a84b; --gold-bright:#e2c97e; color-scheme:dark } }
+:root[data-theme="dark"]{ --bg:#0f0f0f; --fg:#f5f2ed; --muted:#a8a39a; --panel:rgba(16,16,16,.9); --line:#2e2e2e; --gold:#c8a84b; --gold-bright:#e2c97e; color-scheme:dark }
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--mono);overflow:hidden}
+#view{position:absolute;inset:0}
+#view canvas{display:block;width:100%;height:100%}
+.hud{position:absolute;left:0;right:0;top:0;padding-block:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));pointer-events:none;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.hud h1{font-family:var(--display);font-size:clamp(26px,5vw,40px);margin:0;line-height:.95;letter-spacing:.02em}
+.hud .sub{font-size:12px;color:var(--muted);margin-top:4px;letter-spacing:.06em;text-transform:uppercase}
+.bar{position:absolute;left:0;right:0;bottom:0;padding-block:10px calc(10px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:var(--panel);border-top:1px solid var(--line);backdrop-filter:blur(6px)}
+.bar button{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:8px 12px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer;border-radius:2px}
+.bar button[aria-pressed="true"]{border-color:var(--gold);color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold)}
+.bar button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.bar .lbl{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-left:6px}
+.bar .spacer{flex:1}
+.bar .hint{font-size:11px;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){ .bar button{transition:none} }
+</style>
+
+<div id="view"></div>
+<div class="hud">
+  <div><h1>VA Gullwing · Hilux GD6 DC</h1><div class="sub">Concept Rev A · full-side wing doors open 100° · 2.33 m cantilever rack · 3CR12 1.5 mm</div></div>
+</div>
+<div class="bar">
+  <span class="lbl">Wings</span>
+  <button id="bOpen" aria-pressed="true">Open</button>
+  <button id="bClose" aria-pressed="false">Closed</button>
+  <span class="lbl">Canopy</span>
+  <button id="cBlack" aria-pressed="true">Matte black</button>
+  <button id="cWhite" aria-pressed="false">Matte white</button>
+  <button id="cGrey" aria-pressed="false">Matte grey</button>
+  <span class="lbl">View</span>
+  <button id="vRear">Rear ¾</button>
+  <button id="vSide">Side</button>
+  <button id="vFront">Front ¾</button>
+  <button id="vTop">Top</button>
+  <span class="spacer"></span>
+  <span class="hint">drag to orbit · scroll to zoom</span>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+(function(){
+  const M = (c, r, m) => new THREE.MeshStandardMaterial({ color: c, roughness: r, metalness: m || 0 });
+  const mat = {
+    body:   M(0xf2f2ee, 0.45, 0.05),
+    trim:   M(0x1c1c1c, 0.9),
+    glass:  new THREE.MeshStandardMaterial({ color: 0x0d1418, roughness: 0.15, metalness: 0.6, transparent: true, opacity: 0.85 }),
+    tyre:   M(0x151515, 0.95),
+    rim:    M(0x9a9a9a, 0.4, 0.8),
+    canopy: M(0x1a1a1a, 0.85),
+    inner:  M(0x2a2a2a, 0.95),
+    steel:  M(0xb8bcc0, 0.35, 0.9),
+    gold:   M(0xc8a84b, 0.4, 0.7),
+    ground: new THREE.MeshStandardMaterial({ color: 0xd9d4cb, roughness: 1 })
+  };
+  const canopyParts = [];
+  const cm = (c) => { mat.canopy.color.setHex(c); };
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xe9e5de);
+  scene.fog = new THREE.Fog(0xe9e5de, 14, 40);
+
+  const view = document.getElementById('view');
+  const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+  view.appendChild(renderer.domElement);
+
+  const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.target.set(0.5, 1.15, 0);
+  controls.enableDamping = true; controls.maxPolarAngle = Math.PI / 2 - 0.02;
+  controls.minDistance = 3; controls.maxDistance = 20;
+
+  // lights
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x8a8278, 0.55));
+  const sun = new THREE.DirectionalLight(0xfff4e0, 1.3);
+  sun.position.set(-5, 8, 6); sun.castShadow = true;
+  sun.shadow.mapSize.set(2048, 2048);
+  Object.assign(sun.shadow.camera, { left: -6, right: 6, top: 6, bottom: -6, near: 1, far: 30 });
+  sun.shadow.bias = -0.0005;
+  scene.add(sun);
+  const fill = new THREE.DirectionalLight(0xdfe8ff, 0.4); fill.position.set(6, 4, -6); scene.add(fill);
+
+  // ground
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(80, 80), mat.ground);
+  ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground);
+
+  const box = (w, h, d, m, x, y, z, parent) => {
+    const g = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m);
+    g.position.set(x, y, z); g.castShadow = true; g.receiveShadow = true; (parent || scene).add(g); return g;
+  };
+  // extrude a side profile (x,y points) across width w, centred on z
+  const profile = (pts, w, m, parent) => {
+    const s = new THREE.Shape(); pts.forEach((p, i) => i ? s.lineTo(p[0], p[1]) : s.moveTo(p[0], p[1]));
+    const g = new THREE.Mesh(new THREE.ExtrudeGeometry(s, { depth: w, bevelEnabled: false }), m);
+    g.position.z = -w / 2; g.castShadow = true; g.receiveShadow = true; (parent || scene).add(g); return g;
+  };
+
+  // ---------- Bakkie (Hilux DC, approx, metres; X forward, rear axle at x=0) ----------
+  const W = 1.855;
+  // lower body
+  profile([[-1.12, 0.42], [4.2, 0.42], [4.3, 0.75], [4.3, 1.0], [2.75, 1.05], [2.75, 0.9], [-1.1, 0.9]], W, mat.body);
+  // front wheel arch covers + bonnet
+  profile([[2.75, 0.9], [2.75, 1.05], [4.3, 1.0], [4.35, 1.32], [2.7, 1.38]], W, mat.body);
+  // cab
+  const cab = profile([[0.62, 0.9], [2.7, 0.9], [2.7, 1.38], [2.15, 1.78], [1.95, 1.815], [0.75, 1.815], [0.62, 1.7]], W - 0.06, mat.body);
+  // windows: windscreen, side glass, rear glass
+  const ws = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 0.52), mat.glass);
+  ws.position.set(2.44, 1.6, 0); ws.rotation.y = Math.PI / 2; ws.rotation.x = -0.62; ws.rotation.order = 'YXZ'; scene.add(ws);
+  [1, -1].forEach(s => {
+    const g1 = box(0.72, 0.5, 0.02, mat.glass, 1.6, 1.45, s * (W - 0.06) / 2);
+    const g2 = box(0.72, 0.5, 0.02, mat.glass, 0.85, 1.45, s * (W - 0.06) / 2);
+    box(0.04, 0.9, 0.02, mat.trim, 1.22, 1.3, s * (W - 0.04) / 2); // B pillar
+    box(1.9, 0.03, 0.03, mat.trim, 1.66, 0.9, s * W / 2); // door line
+    box(0.25, 0.06, 0.06, mat.trim, 1.0, 1.25, s * (W + 0.05) / 2); // handle
+  });
+  box(0.02, 0.4, 1.3, mat.glass, 0.63, 1.5, 0); // rear glass
+  // load bin
+  profile([[-1.1, 0.9], [0.6, 0.9], [0.6, 1.4], [-1.1, 1.4]], W, mat.body);
+  // bin interior (floor + inner walls so the open doors show something)
+  box(1.6, 0.02, W - 0.12, mat.inner, -0.25, 0.86, 0);
+  [1, -1].forEach(s => box(1.6, 0.52, 0.02, mat.inner, -0.25, 1.13, s * (W - 0.12) / 2));
+  box(0.02, 0.52, W - 0.12, mat.inner, 0.58, 1.13, 0);
+  // rear: bumper, tailgate, lights, plate
+  box(0.12, 0.16, W + 0.1, mat.body, -1.16, 0.62, 0);
+  box(0.04, 0.5, W - 0.1, mat.body, -1.12, 1.15, 0);
+  [1, -1].forEach(s => box(0.05, 0.42, 0.16, M(0x8a1414, 0.3, 0.2), -1.13, 1.12, s * (W / 2 - 0.1)));
+  box(0.02, 0.12, 0.5, M(0xf5f5f5, 0.6), -1.15, 0.92, 0);
+  // front: grille, lights
+  box(0.04, 0.3, 1.2, mat.trim, 4.33, 0.95, 0);
+  [1, -1].forEach(s => box(0.04, 0.2, 0.32, M(0xdde6ee, 0.2, 0.6), 4.34, 1.12, s * 0.68));
+  box(0.1, 0.2, W + 0.1, mat.trim, 4.3, 0.5, 0);
+  // side steps
+  [1, -1].forEach(s => box(1.8, 0.05, 0.22, mat.trim, 1.65, 0.46, s * (W / 2 + 0.05)));
+  // wheels
+  const wheel = (x, s) => {
+    const t = new THREE.Mesh(new THREE.CylinderGeometry(0.39, 0.39, 0.26, 40), mat.tyre);
+    t.rotation.x = Math.PI / 2; t.position.set(x, 0.39, s * (W / 2 - 0.1)); t.castShadow = true; scene.add(t);
+    const r = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.24, 0.27, 24), mat.rim);
+    r.rotation.x = Math.PI / 2; r.position.copy(t.position); scene.add(r);
+    const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.29, 16), mat.trim);
+    hub.rotation.x = Math.PI / 2; hub.position.copy(t.position); scene.add(hub);
+  };
+  [1, -1].forEach(s => { wheel(0, s); wheel(3.085, s); });
+  // wheel arches (dark lips)
+  [1, -1].forEach(s => { [0, 3.085].forEach(x => {
+    const a = new THREE.Mesh(new THREE.TorusGeometry(0.46, 0.03, 8, 32, Math.PI), mat.trim);
+    a.position.set(x, 0.42, s * W / 2); a.rotation.y = 0; scene.add(a);
+  }); });
+
+  // ---------- Canopy (GD6 DC master: 1594 W, 1630 L, 485 H, 30° front rake) ----------
+  const CW = 1.594, RAIL = 1.4, CH = 0.485, CX0 = -1.0, CX1 = 0.63, ROOF = RAIL + CH; // 1.885
+  const rake = CH * Math.tan(30 * Math.PI / 180); // 0.28
+  const T = 0.015;
+  const canopy = new THREE.Group(); scene.add(canopy);
+  // roof plate
+  const roof = box((CX1 - rake) - CX0, T, CW, mat.canopy, (CX0 + CX1 - rake) / 2, ROOF - T / 2, 0, canopy);
+  // front raked panel
+  const fl = Math.hypot(rake, CH);
+  const front = box(T, fl, CW, mat.canopy, (CX1 - rake / 2), RAIL + CH / 2, 0, canopy);
+  front.rotation.z = -Math.atan2(rake, CH);
+  // rear door frame + rear door w/ glass
+  box(T, CH, CW, mat.canopy, CX0 + T / 2, RAIL + CH / 2, 0, canopy);
+  box(0.005, 0.26, 1.2, mat.glass, CX0 - 0.003, RAIL + 0.27, 0, canopy);
+  box(0.006, 0.07, 0.22, mat.gold, CX0 - 0.004, RAIL + 0.07, 0.45, canopy); // VA nameplate
+  // sides: sill strip (85 mm), corner posts, roof-edge rails
+  [1, -1].forEach(s => {
+    const z = s * (CW / 2 - T / 2);
+    box(CX1 - CX0, 0.085, T, mat.canopy, (CX0 + CX1) / 2, RAIL + 0.0425, z, canopy); // sill
+    box(0.06, CH, T, mat.canopy, CX0 + 0.03, RAIL + CH / 2, z, canopy); // rear post
+    const fp = box(0.06, fl, T, mat.canopy, CX1 - rake / 2 - 0.02, RAIL + CH / 2, z, canopy); fp.rotation.z = -Math.atan2(rake, CH); // front post
+    box(CX1 - CX0, 0.04, T, mat.canopy, (CX0 + CX1) / 2, ROOF - 0.02, z, canopy); // roof edge flange
+  });
+  // ---------- Wing doors: 1450 x 400, hinged at roof edge ----------
+  const DL = 1.45, DH = 0.40, DX = CX0 + 0.08; // door starts 80 mm from rear
+  const doors = [];
+  [1, -1].forEach(s => {
+    const pivot = new THREE.Group();
+    pivot.position.set(DX + DL / 2, ROOF - 0.04, s * (CW / 2));
+    canopy.add(pivot);
+    const skin = box(DL, DH, 0.02, mat.canopy, 0, -DH / 2, 0, pivot);
+    const gl = box(1.1, 0.25, 0.006, mat.glass, 0, -DH / 2 + 0.02, s * 0.012, pivot);
+    box(DL, 0.025, 0.025, mat.canopy, 0, -DH + 0.0125, s * -0.02, pivot); // bottom hem
+    // Z stiffener inside
+    box(DL - 0.1, 0.025, 0.02, mat.inner, 0, -DH / 2, s * -0.02, pivot);
+    // hinge barrel
+    const hg = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, DL, 12), mat.steel);
+    hg.rotation.z = Math.PI / 2; pivot.add(hg);
+    // lock handles (2-point)
+    [-0.55, 0.55].forEach(x => box(0.11, 0.035, 0.012, mat.steel, x, -DH + 0.07, s * 0.016, pivot));
+    pivot.userData.side = s; doors.push(pivot);
+  });
+  // gas struts: two per door, from front/rear post to door
+  const struts = [];
+  [1, -1].forEach((s, i) => {
+    [[DX + 0.12, CX0 + 0.05], [DX + DL - 0.12, CX1 - rake - 0.1]].forEach(([dx, px]) => {
+      const a = new THREE.Vector3(px, RAIL + 0.14, s * (CW / 2 - 0.03)); // on post
+      const cyl = new THREE.Mesh(new THREE.CylinderGeometry(0.009, 0.009, 1, 10), mat.steel);
+      cyl.castShadow = true; canopy.add(cyl);
+      const rod = new THREE.Mesh(new THREE.CylinderGeometry(0.0045, 0.0045, 1, 8), M(0xdddddd, 0.3, 0.9));
+      canopy.add(rod);
+      struts.push({ a, cyl, rod, door: doors[i], dx, s });
+    });
+  });
+  const _b = new THREE.Vector3(), _m = new THREE.Vector3();
+  function updateStruts() {
+    struts.forEach(st => {
+      // attach point on door: 60% down the door at local x
+      _b.set(st.dx - (st.door.position.x), -DH * 0.62, st.s * -0.015);
+      st.door.localToWorld(_b); canopy.worldToLocal(_b);
+      const len = st.a.distanceTo(_b);
+      const dir = _b.clone().sub(st.a).normalize();
+      const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+      st.cyl.quaternion.copy(q); st.cyl.scale.set(1, len * 0.55, 1); st.cyl.position.copy(st.a).addScaledVector(dir, len * 0.275);
+      st.rod.quaternion.copy(q); st.rod.scale.set(1, len, 1); st.rod.position.copy(st.a).addScaledVector(dir, len * 0.5);
+    });
+  }
+
+  // ---------- Cantilever roof rack: 2330 x 1450, 7 cross bars, 6 feet ----------
+  const RL = 2.33, RW = 1.45, RX0 = CX0 + 0.02, RY = ROOF + 0.022, RH = 0.057;
+  const rack = new THREE.Group(); canopy.add(rack);
+  [1, -1].forEach(s => {
+    const rail = box(RL, RH, 0.03, mat.canopy, RX0 + RL / 2, RY + RH / 2, s * (RW / 2 - 0.015), rack);
+    // tie-down slots (gold inserts to read as cut-outs)
+    for (let i = 0; i < 11; i++) box(0.05, 0.022, 0.034, mat.gold, RX0 + 0.12 + i * 0.21, RY + RH / 2, s * (RW / 2 - 0.015), rack);
+  });
+  box(0.03, RH, RW, mat.canopy, RX0 + 0.015, RY + RH / 2, 0, rack);
+  box(0.03, RH, RW, mat.canopy, RX0 + RL - 0.015, RY + RH / 2, 0, rack);
+  for (let i = 0; i < 7; i++) box(0.04, 0.03, RW - 0.06, mat.canopy, RX0 + 0.16 + i * 0.335, RY + 0.015, 0, rack);
+  // feet: rear, mid, front (front pair on the corner posts)
+  [RX0 + 0.08, RX0 + 0.8, CX1 - rake - 0.06].forEach(x => [1, -1].forEach(s => box(0.08, 0.022, 0.05, mat.canopy, x, ROOF + 0.011, s * (RW / 2 - 0.02), rack)));
+
+  canopyParts.push(mat.canopy);
+
+  // ---------- state ----------
+  const OPEN = 100 * Math.PI / 180;
+  let target = 1, cur = 1, started = false;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function applyDoors(t) {
+    doors.forEach(d => { d.rotation.x = -d.userData.side * OPEN * t; d.updateMatrixWorld(true); });
+    updateStruts();
+  }
+  const press = (ids, on) => ids.forEach(id => document.getElementById(id).setAttribute('aria-pressed', String(id === on)));
+  document.getElementById('bOpen').onclick = () => { target = 1; press(['bOpen', 'bClose'], 'bOpen'); };
+  document.getElementById('bClose').onclick = () => { target = 0; press(['bOpen', 'bClose'], 'bClose'); };
+  document.getElementById('cBlack').onclick = () => { cm(0x1a1a1a); press(['cBlack', 'cWhite', 'cGrey'], 'cBlack'); };
+  document.getElementById('cWhite').onclick = () => { cm(0xe8e6e0); press(['cBlack', 'cWhite', 'cGrey'], 'cWhite'); };
+  document.getElementById('cGrey').onclick = () => { cm(0x6a6c6e); press(['cBlack', 'cWhite', 'cGrey'], 'cGrey'); };
+  const views = {
+    vRear:  [-4.3, 2.2, 4.3],
+    vSide:  [0.5, 1.6, 7.6],
+    vFront: [7.2, 2.4, 4.6],
+    vTop:   [0.9, 11.5, 0.6]
+  };
+  const goView = (k) => { camera.position.set(...views[k]); controls.update(); };
+  Object.keys(views).forEach(k => document.getElementById(k).onclick = () => goView(k));
+
+  function resize() {
+    const w = view.clientWidth, h = view.clientHeight;
+    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', resize);
+  resize(); goView('vRear'); applyDoors(1);
+
+  function tick() {
+    requestAnimationFrame(tick);
+    if (cur !== target) {
+      cur = reduce ? target : cur + Math.sign(target - cur) * 0.03;
+      if (Math.abs(cur - target) < 0.03) cur = target;
+      applyDoors(cur);
+    }
+    controls.update();
+    renderer.render(scene, camera);
+  }
+  tick();
+  window.__vaReady = true;
+})();
+</script>
